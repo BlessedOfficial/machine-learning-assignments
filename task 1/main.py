@@ -1,9 +1,10 @@
 
-from chaining import generate_response
+from routing import generate_response
 
 
-with open("input.txt", "r") as file:
-    user_input = file.read()
+print("Welcome to the Customer Support Ticket System!")
+user_input = input("Please describe your issue: ")
 response = generate_response(user_input)
+
 
 print(response)
