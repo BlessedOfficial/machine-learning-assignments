@@ -2,8 +2,7 @@ import os
 from dotenv import load_dotenv
 from openrouter import OpenRouter
 import json
-
-from chaining import clean_user_input
+import asyncio
 
 load_dotenv()
 
@@ -16,11 +15,47 @@ if not api_key:
 # Create client once
 client = OpenRouter(api_key=api_key)
 
-# =========================
-# 1. CLASSIFICATION
-# =========================
+#Prompts
 
-CLASSIFY_INSTRUCTION = """Information in the triple quotes is a support ticket.
+CLEAN_INSTRUCTION = """
+You are a helpful assistant for cleaning and normalizing customer support tickets.
+Clean and normalize the text in the triple quotes and return 
+clean standardized text without any explanation. 
+Fix all typos and grammatical errors. Expand all contractions and abbreviations.
+Return JSON object in the following format:
+{
+    "cleaned_text": "cleaned and normalized text"
+}
+"""
+GENERATE_SENTIMENT_INSTRUCTION = """
+You are a helpful assistant for analyzing customer support tickets.
+Information in the triple quotes is cleaned customer support ticket given in JSON format with a "cleaned_text" field.
+Analyze the sentiment of the customer's message and determine if it is positive, negative, or neutral.
+Return the sentiment in a JSON object.
+
+Return a JSON object in the following format:
+{
+    "sentiment": "positive" | "negative" | "neutral"
+}
+"""
+
+EXTRACT_KEYWORDS_INSTRUCTION = """
+You are a helpful assistant for extracting keywords from customer support tickets.
+Information in the triple quotes is cleaned customer support ticket given in JSON format with a "cleaned_text" field.
+Extract the most important keywords from the customer's message that are relevant to understanding their issue.
+Return the keywords in a JSON object.
+
+Return a JSON object in the following format:
+{
+    "keywords": ["keyword 1", "keyword 2", "keyword 3"]
+}
+"""
+
+CLASSIFY_INSTRUCTION = """
+You are a helpful assistant for classifying customer support tickets.
+You are provided 2 JSON objects in the triple quotes. The first JSON object has a "cleaned_text" field with the cleaned customer support ticket.
+The second JSON object has a "sentiment" field and a "keywords" field with the sentiment and keywords extracted from the ticket.
+
 
 Determine the ticket category and extract key entities.
 
@@ -38,9 +73,9 @@ Return the information in a JSON object with the following format:
     "issue_type": "issue type",
     "urgency": "low | medium | high",
     "description": "cleaned and concise description"
+
 }
 """
-
 
 # =========================
 # 2. ROUTING BRANCHES
@@ -142,9 +177,82 @@ Return a JSON object in the following format:
 }
 """
 
+#Functions
 
-def classify_input(cleaned_input):
-    prompt = f"{CLASSIFY_INSTRUCTION}\n\"\"\"\n{cleaned_input}\n\"\"\""
+def clean_user_input(user_input):
+    prompt = f"{CLEAN_INSTRUCTION}\n\"\"\"\n{user_input}\n\"\"\""
+    result = client.chat.send(
+        model="openrouter/free",
+        messages=[{"role": "user", "content": prompt}],
+    )
+    return result.choices[0].message.content
+
+async def generate_sentiment(user_input):
+    prompt = f"{GENERATE_SENTIMENT_INSTRUCTION}\n\"\"\"\n{user_input}\n\"\"\""
+    
+    result = await asyncio.to_thread(
+        client.chat.send,
+        model="openrouter/free",
+        messages=[{"role": "user", "content": prompt}],
+    )
+
+    return result.choices[0].message.content
+
+
+async def extract_keywords(user_input):
+    prompt = f"{EXTRACT_KEYWORDS_INSTRUCTION}\n\"\"\"\n{user_input}\n\"\"\""
+    
+    result = await asyncio.to_thread(
+        client.chat.send,
+        model="openrouter/free",
+        messages=[{"role": "user", "content": prompt}],
+    )
+
+    return result.choices[0].message.content
+
+async def generate_sentiment_and_keywords(cleaned_input):
+    
+    
+
+    sentiment_result, keywords_result = await asyncio.gather(
+        generate_sentiment(cleaned_input),
+        extract_keywords(cleaned_input)
+    )
+  
+    sentiment_clean = clean_llm_json(sentiment_result)
+    keywords_clean = clean_llm_json(keywords_result)
+
+    sentiment_data = json.loads(sentiment_clean)
+    keywords_data = json.loads(keywords_clean)
+  
+    combined_result = {
+        "sentiment": sentiment_data["sentiment"],
+        "keywords": keywords_data["keywords"]
+    }
+
+    return combined_result
+
+
+
+def clean_llm_json(response: str):
+    response = response.strip()
+
+    # Remove markdown code block
+    if "```" in response:
+        parts = response.split("```")
+        # JSON is usually in the middle
+        for part in parts:
+            if "{" in part:
+                response = part
+                break
+
+ 
+    response = response.replace("json", "", 1)
+
+    return response.strip()
+
+def classify_input(cleaned_input, sentiments_and_keywords):
+    prompt = f"{CLASSIFY_INSTRUCTION}\n\"\"\"\n{cleaned_input} + {json.dumps(sentiments_and_keywords)}\n\"\"\""
     result = client.chat.send(
         model="openrouter/free",
         messages=[{"role": "user", "content": prompt}],
@@ -215,9 +323,3 @@ def route_issue(classified_data):
     else:
         return unsure_response(classified_data)
 
-
-def generate_response(user_input):
-    cleaned = clean_user_input(user_input)
-    classified_data = classify_input(cleaned)
-    response_text = route_issue(classified_data)
-    return response_text
