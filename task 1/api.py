@@ -1,8 +1,12 @@
+from technical import tech_issue_response
+
 import os
 from dotenv import load_dotenv
 from openrouter import OpenRouter
 import json
 import asyncio
+
+from utils import clean_llm_json
 
 load_dotenv()
 
@@ -81,24 +85,7 @@ Return the information in a JSON object with the following format:
 # 2. ROUTING BRANCHES
 # =========================
 
-TECHNICAL_ISSUE_INSTRUCTION = """Information in the triple quotes is a support ticket related to a technical issue.
 
-Using the provided information, suggest a solution.
-
-Return a JSON object in the following format:
-{
-    "category": "technical",
-    "product": "...",
-    "issue_type": "...",
-    "urgency": "...",
-    "description": "...",
-    "solution_steps": [
-        "step 1",
-        "step 2",
-        "step 3"
-    ]
-}
-"""
 
 
 BILLING_ISSUE_INSTRUCTION = """Information in the triple quotes is a support ticket related to a billing issue.
@@ -234,22 +221,7 @@ async def generate_sentiment_and_keywords(cleaned_input):
 
 
 
-def clean_llm_json(response: str):
-    response = response.strip()
 
-    # Remove markdown code block
-    if "```" in response:
-        parts = response.split("```")
-        # JSON is usually in the middle
-        for part in parts:
-            if "{" in part:
-                response = part
-                break
-
- 
-    response = response.replace("json", "", 1)
-
-    return response.strip()
 
 def classify_input(cleaned_input, sentiments_and_keywords):
     prompt = f"{CLASSIFY_INSTRUCTION}\n\"\"\"\n{cleaned_input} + {json.dumps(sentiments_and_keywords)}\n\"\"\""
@@ -266,13 +238,7 @@ def classify_input(cleaned_input, sentiments_and_keywords):
         return {"category": "unsure"}
 
 
-def tech_issue_response(classified_data):
-    prompt = f"{TECHNICAL_ISSUE_INSTRUCTION}\n\"\"\"\n{json.dumps(classified_data)}\n\"\"\""
-    result = client.chat.send(
-        model="openrouter/free",
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return result.choices[0].message.content
+
 
 def billing_issue_response(classified_data):
     prompt = f"{BILLING_ISSUE_INSTRUCTION}\n\"\"\"\n{json.dumps(classified_data)}\n\"\"\""
@@ -310,6 +276,7 @@ def unsure_response(classified_data):
 # 2. ROUTING LOGIC
 # =========================
 
+#Each function on seperate page to implement Reflection
 def route_issue(classified_data):
     category = classified_data.get("category", "unsure")  # safer access
     if category == "technical":
