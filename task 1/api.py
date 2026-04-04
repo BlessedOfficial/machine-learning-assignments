@@ -1,4 +1,7 @@
 from technical import tech_issue_response
+from billing import billing_issue_response
+from general import general_issue_response
+from escalation import escalation_response
 
 import os
 from dotenv import load_dotenv
@@ -84,69 +87,6 @@ Return the information in a JSON object with the following format:
 # =========================
 # 2. ROUTING BRANCHES
 # =========================
-
-
-
-
-BILLING_ISSUE_INSTRUCTION = """Information in the triple quotes is a support ticket related to a billing issue.
-
-Using the provided information, determine if the user is eligible for a refund or billing correction and suggest next steps.
-
-Return a JSON object in the following format:
-{
-    "category": "billing",
-    "product": "...",
-    "issue_type": "...",
-    "urgency": "...",
-    "description": "...",
-    "solution_steps": [
-        "step 1",
-        "step 2",
-        "step 3"
-    ]
-}
-"""
-
-
-GENERAL_ISSUE_INSTRUCTION = """Information in the triple quotes is a support ticket related to a general inquiry.
-
-Provide a helpful and informative response.
-
-Return a JSON object in the following format:
-{
-    "category": "general",
-    "product": "...",
-    "issue_type": "...",
-    "urgency": "...",
-    "description": "...",
-    "solution_steps": [
-        "step 1",
-        "step 2",
-        "step 3"
-    ]
-}
-"""
-
-
-ESCALATION_INSTRUCTION = """Information in the triple quotes is a support ticket that requires escalation.
-
-Provide an empathetic response and include clear escalation steps.
-
-Return a JSON object in the following format:
-{
-    "category": "escalation",
-    "product": "...",
-    "issue_type": "...",
-    "urgency": "...",
-    "description": "...",
-    "solution_steps": [
-        "acknowledge the issue empathetically",
-        "explain escalation process",
-        "list required details for escalation",
-        "provide expected response time"
-    ]
-}
-"""
 
 
 UNSURE_ISSUE_INSTRUCTION = """Information in the triple quotes is a support ticket that is unclear.
@@ -240,29 +180,8 @@ def classify_input(cleaned_input, sentiments_and_keywords):
 
 
 
-def billing_issue_response(classified_data):
-    prompt = f"{BILLING_ISSUE_INSTRUCTION}\n\"\"\"\n{json.dumps(classified_data)}\n\"\"\""
-    result = client.chat.send(
-        model="openrouter/free",
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return result.choices[0].message.content
 
-def general_issue_response(classified_data):
-    prompt = f"{GENERAL_ISSUE_INSTRUCTION}\n\"\"\"\n{json.dumps(classified_data)}\n\"\"\""
-    result = client.chat.send(
-        model="openrouter/free",
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return result.choices[0].message.content
 
-def escalation_response(classified_data):
-    prompt = f"{ESCALATION_INSTRUCTION}\n\"\"\"\n{json.dumps(classified_data)}\n\"\"\""
-    result = client.chat.send(
-        model="openrouter/free",
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return result.choices[0].message.content
 
 def unsure_response(classified_data):
     prompt = f"{UNSURE_ISSUE_INSTRUCTION}\n\"\"\"\n{json.dumps(classified_data)}\n\"\"\""

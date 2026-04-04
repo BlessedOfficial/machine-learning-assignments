@@ -16,7 +16,7 @@ if not api_key:
 # Create client once
 client = OpenRouter(api_key=api_key)
 
-TECHNICAL_ISSUE_INSTRUCTION = """You are a helpful assistant for generating solutions to technical customer support ticket issues for unspecified company.
+ESCALATION_ISSUE_INSTRUCTION = """You are a helpful assistant for generating solutions to Escalation customer support ticket issues for unspecified company.
 
 You are provided a JSON object in the triple quotes with the following fields:
 Category: The category of the issue (e.g. technical, billing, account)
@@ -29,7 +29,7 @@ Using the provided information, suggest a solution to the customer's issue.
 
 Return a JSON object in the following format:
 {
-    "category": "technical",
+    "category": "escalation",
     "product": "...",
     "issue_type": "...",
     "urgency": "...",
@@ -42,7 +42,7 @@ Return a JSON object in the following format:
 }
 """
 
-SOLUTION_REVIEWER_INSTRUCTION = """You are a helpful assistant for reviewing solutions to technical customer support ticket issues for unspecified company.
+SOLUTION_REVIEWER_INSTRUCTION = """You are a helpful assistant for reviewing solutions to general customer support ticket issues for unspecified company.
 
 You are provided with 2 JSON objects in the triple quotes. The first JSON object has the original ticket information with the following fields:
 Category: The category of the issue (e.g. technical, billing, account)
@@ -57,10 +57,10 @@ Issue Type: The type of issue (e.g. "not turning on", "error message", "slow per
 Urgency: The urgency of the issue (e.g. "low", "medium", "high")
 Description: A detailed description of the customer's issue.
 Solution Steps: A list of steps suggested to solve the issue.
-Using the provided information, review the suggested solution and determine if it is appropriate for the customer's issue. If it is appropriate, return a JSON object with a "approved" field set to true. If it is not appropriate, return a JSON object with a "approved" field set to false and a "feedback" field with suggestions for improving the solution.
+Using the provided information, review the suggested solution to client and determine if it is appropriate for the customer's issue. If it is appropriate, return a JSON object with a "approved" field set to true. If it is not appropriate, return a JSON object with a "approved" field set to false and a "feedback" field with suggestions for improving the solution.
 """
 
-MAX_RETRIES = max(2, 3)  # Minimum of 2
+MAX_RETRIES = 3  
 
 def safe_parse_json(data):
     """Safely parse JSON whether it's string or dict."""
@@ -73,9 +73,9 @@ def safe_parse_json(data):
         return None
 
 
-def tech_issue_response(classified_data):
+def escalation_response(classified_data):
     # Step 1: Generate initial solution
-    raw_solution = tech_issue_response_suggested(classified_data)
+    raw_solution = escalation_response_suggested(classified_data)
     cleaned_solution = clean_llm_json(raw_solution)
 
     solution_data = safe_parse_json(cleaned_solution)
@@ -148,8 +148,8 @@ Feedback:
     return solution_data
 
 
-def tech_issue_response_suggested(classified_data):
-    prompt = f"{TECHNICAL_ISSUE_INSTRUCTION}\n\"\"\"\n{json.dumps(classified_data)}\n\"\"\""
+def escalation_response_suggested(classified_data):
+    prompt = f"{ESCALATION_INSTRUCTION}\n\"\"\"\n{json.dumps(classified_data)}\n\"\"\""
     result = client.chat.send(
         model="openrouter/free",
         messages=[{"role": "user", "content": prompt}],
