@@ -84,7 +84,8 @@ User Input
 git clone
 cd task1
 pip install -r requirements.txt
-Set API keys, OPENROUTER_API_KEY=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
+Create API Keys with OpenROuter and add then in .env eg
+OPENROUTER_API_KEY=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
 
 ```
 
