@@ -114,6 +114,7 @@ def escalation_response(classified_data):
 
         improved_prompt = f"""
 Improve this solution based on the feedback.
+Add to the JSON object a new field "improvement_notes" with a brief explanation of how you improved the solution based on the feedback.
 
 Return ONLY valid JSON.
 
@@ -149,7 +150,7 @@ Feedback:
 
 
 def escalation_response_suggested(classified_data):
-    prompt = f"{ESCALATION_INSTRUCTION}\n\"\"\"\n{json.dumps(classified_data)}\n\"\"\""
+    prompt = f"{ESCALATION_ISSUE_INSTRUCTION}\n\"\"\"\n{json.dumps(classified_data)}\n\"\"\""
     result = client.chat.send(
         model="openrouter/free",
         messages=[{"role": "user", "content": prompt}],

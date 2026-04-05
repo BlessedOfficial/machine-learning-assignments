@@ -114,6 +114,7 @@ def general_issue_response(classified_data):
 
         improved_prompt = f"""
 Improve this solution based on the feedback.
+Add to the JSON object a new field "improvement_notes" with a brief explanation of how you improved the solution based on the feedback.
 
 Return ONLY valid JSON.
 

@@ -116,6 +116,7 @@ def billing_issue_response(classified_data):
 Improve this solution based on the feedback.
 
 Return ONLY valid JSON.
+Add to the JSON object a new field "improvement_notes" with a brief explanation of how you improved the solution based on the feedback.
 
 Original Solution:
 {json.dumps(solution_data, indent=2)}
