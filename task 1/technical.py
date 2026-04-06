@@ -60,7 +60,7 @@ Solution Steps: A list of steps suggested to solve the issue.
 Using the provided information, review the suggested solution and determine if it is appropriate for the customer's issue. If it is appropriate, return a JSON object with a "approved" field set to true. If it is not appropriate, return a JSON object with a "approved" field set to false and a "feedback" field with suggestions for improving the solution.
 """
 
-MAX_RETRIES = max(2, 3)  # Minimum of 2
+MAX_RETRIES = 3 # Minimum of 2
 
 def safe_parse_json(data):
     """Safely parse JSON whether it's string or dict."""
