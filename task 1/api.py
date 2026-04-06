@@ -63,7 +63,10 @@ You are a helpful assistant for classifying customer support tickets.
 You are provided 2 JSON objects in the triple quotes. The first JSON object has a "cleaned_text" field with the cleaned customer support ticket.
 The second JSON object has a "sentiment" field and a "keywords" field with the sentiment and keywords extracted from the ticket.
 
-
+Escalation issues are high urgency problems that require immediate attention from a human agent.
+Technical issues are problems related to the functionality of the product.
+Billing issues are problems related to billing and payment.
+General issues are problems that don't fit into the other categories but can still be handled by a support agent.
 Determine the ticket category and extract key entities.
 
 Categories must be one of:
