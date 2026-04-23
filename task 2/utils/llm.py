@@ -4,7 +4,7 @@ from openrouter import OpenRouter
 import json
 import asyncio
 
-from json_parser import clean_llm_json
+from utils.json_parser import clean_llm_json
 
 load_dotenv()
 
@@ -16,15 +16,24 @@ if not api_key:
 # Create client once
 client = OpenRouter(api_key=api_key)
 
-async def call_llm(messages, model, temperature=0.7):
-    try:
-        response = await client.chat.completions.create(
-            model=model,
-            messages=messages,
-            temperature=temperature
-        )
-        content = response.choices[0].message.content
-        return clean_llm_json(content)
-    except Exception as e:
-        print(f"Error calling LLM: {e}")
-        return None
+async def call_llm(messages, model="openrouter/free", temperature=0.7):
+    for attempt in range(3):
+        try:
+            response = client.chat.send(
+                model=model,
+                messages=messages,
+                temperature=temperature
+            )
+
+            if not response.choices:
+                raise ValueError("No choices returned")
+
+            content = response.choices[0].message.content
+
+            cleaned = clean_llm_json(content)
+            return cleaned if cleaned else content
+
+        except Exception as e:
+            if attempt == 2:
+                raise RuntimeError(f"LLM call failed: {e}")
+            await asyncio.sleep(1)
