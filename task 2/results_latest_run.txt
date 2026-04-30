@@ -1,0 +1,162 @@
+[STAGE] Input
+  Query: How Zimbabwae's economy is doing in the business sector?
+  Candidates per task: 3
+  Model: openrouter/free
+
+[STAGE] Classify
+  Classified domain: Financial / Business
+  Is safe: True
+  Reasoning: The query concerns Zimbabwe's economic condition in the business sector, which is a market-related topic fitting the Financial / Business category. No personal data, harmful instructions, or policy violations are present.
+
+[STAGE] Route
+  Selected route: Financial
+  Route reason: Prioritizing market data and risk disclaimers.
+
+[STAGE] Execute Route Pipeline (Financial)
+
+[STAGE] Decompose (Financial)
+=== RAW LLM OUTPUT ===
+{
+  "intent": "analysis",
+  "entities": ["Zimbabwe economy"],
+  "time_scope": "unspecified",
+  "tasks": [
+    {
+      "agent": "market_data",
+      "query": "GDP growth rate and economic indicators for Zimbabwe's business sector"
+    },
+    {
+      "agent": "risk",
+      "query": "current economic risks and challenges facing Zimbabwe's business sector"
+    },
+    {
+      "agent": "sentiment",
+      "query": "business sentiment and investor confidence in Zimbabwe's economy"
+    },
+    {
+      "agent": "macro",
+      "query": "inflation rate and currency stability in Zimbabwe affecting business operations"
+    }
+  ]
+}
+=====================
+  Task count: 4
+
+[STAGE] Best-of-N Fan-Out (Financial)
+- Best-of-N executed for all 4 tasks (3 candidates each).
+- Winner examples from run:
+  - sentiment task winner score: 1
+  - macro task winner score: 9
+
+[STAGE] Judge (Financial)
+[JUDGE] Raw response parse failure:
+- Judge returned non-JSON explanatory text instead of required structured JSON.
+
+[STAGE] Routing Result
+  Domain: Financial
+  Reason: Prioritizing market data and risk disclaimers.
+  Confidence: 0.96
+
+[STAGE] Final Output
+{
+  "error": "invalid_judge_output"
+}
+
+Run metadata:
+- exit_code: 0
+- elapsed_ms: 223512
+
+---
+
+Other Runs
+
+Case A: Provider limit/billing during decomposition
+
+[STAGE] Input
+  Query: How Zimbabwae's economy is doing in the business sector?
+  Candidates per task: 3
+  Model: openrouter/free
+
+[STAGE] Classify
+  Classified domain: Financial / Business
+  Is safe: True
+  Reasoning: The query asks about Zimbabwe's economic status specifically in the business sector, which falls under financial/business analysis.
+
+[STAGE] Route
+  Selected route: Financial
+  Route reason: Prioritizing market data and risk disclaimers.
+
+[STAGE] Execute Route Pipeline (Financial)
+[STAGE] Decompose (Financial)
+[DECOMPOSE] Provider limit/billing signal: Error: Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day
+
+[STAGE] Routing Result
+  Domain: Financial
+  Reason: Prioritizing market data and risk disclaimers.
+  Confidence: 0.95
+
+[STAGE] Final Output
+{
+  "error": "decomposition_provider_error",
+  "message": "Error: Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
+}
+
+Case B: Successful decompose + fan-out, then judge/fan-in timeouts
+
+[STAGE] Input
+  Query: How Zimbabwae's economy is doing in the business sector?
+  Candidates per task: 3
+  Model: openrouter/free
+
+[STAGE] Classify
+  Classified domain: Financial / Business
+  Is safe: True
+  Reasoning: The query asks about Zimbabwe's economy and business sector, which is a financial/business topic. The typo in 'Zimbabwae' is minor and does not violate safety guidelines.
+
+[STAGE] Route
+  Selected route: Financial
+  Route reason: Prioritizing market data and risk disclaimers.
+
+[STAGE] Execute Route Pipeline (Financial)
+[STAGE] Decompose (Financial)
+
+=== RAW LLM OUTPUT ===
+{
+  "intent": "explanation",
+  "entities": ["Zimbabwe", "business sector"],
+  "time_scope": "unspecified",
+  "tasks": [
+    {
+      "agent": "market_data",
+      "query": "Zimbabwe business sector recent economic indicators"
+    },
+    {
+      "agent": "risk",
+      "query": "Zimbabwe business sector economic risks and uncertainties"
+    }
+  ]
+}
+=====================
+
+  Task count: 2
+
+[STAGE] Best-of-N Fan-Out (Financial)
+- Task 1 winner: candidate 1, score 8
+- Task 2 winner: candidate 2, score 9
+
+[STAGE] Judge (Financial)
+WARNING:Routes.Financial.financial_route:LLM call failed (attempt 1): type=TimeoutError repr=TimeoutError()
+
+[STAGE] Fan-In Synthesis (Financial)
+WARNING:Routes.Financial.financial_route:LLM call failed (attempt 1): type=TimeoutError repr=TimeoutError()
+WARNING:Routes.Financial.financial_route:LLM call failed (attempt 2): type=TimeoutError repr=TimeoutError()
+
+[STAGE] Routing Result
+  Domain: Financial
+  Reason: Prioritizing market data and risk disclaimers.
+  Confidence: 0.9
+
+[STAGE] Final Output
+{
+  "error": "fan_in_failed"
+}
