@@ -1,0 +1,533 @@
+{
+  "run_label": "happy-path-pto",
+  "correlation_id": "746088f7-7650-4d7a-8b2b-85e513c7d617",
+  "question": "How many PTO days do full-time employees receive per year?",
+  "timestamp": "2026-06-01T20:25:55.952053+00:00",
+  "input_guard": {
+    "decision": "pass",
+    "rule": null,
+    "pii_flags": []
+  },
+  "retrieval": {
+    "query": "How many PTO days do full-time employees receive per year?",
+    "candidate_k": 20,
+    "top_k": 5,
+    "dense": [
+      {
+        "rank": 1,
+        "chunk_id": "pto-and-leave-policy#loc-001",
+        "score": 0.8070691823959351
+      },
+      {
+        "rank": 2,
+        "chunk_id": "pto-and-leave-policy#loc-002",
+        "score": 0.7193609476089478
+      },
+      {
+        "rank": 3,
+        "chunk_id": "pto-and-leave-policy#loc-004",
+        "score": 0.6780475974082947
+      },
+      {
+        "rank": 4,
+        "chunk_id": "office-hours-and-holidays#loc-002",
+        "score": 0.4828840494155884
+      },
+      {
+        "rank": 5,
+        "chunk_id": "remote-work-policy#loc-001",
+        "score": 0.4552290439605713
+      },
+      {
+        "rank": 6,
+        "chunk_id": "employee-referral-program#loc-001",
+        "score": 0.39298176765441895
+      },
+      {
+        "rank": 7,
+        "chunk_id": "org-structure-overview#loc-003",
+        "score": 0.36855006217956543
+      },
+      {
+        "rank": 8,
+        "chunk_id": "on-call-rotation#loc-002",
+        "score": 0.365833580493927
+      },
+      {
+        "rank": 9,
+        "chunk_id": "benefits-overview#loc-004",
+        "score": 0.35675764083862305
+      },
+      {
+        "rank": 10,
+        "chunk_id": "pto-and-leave-policy#loc-003",
+        "score": 0.35644668340682983
+      },
+      {
+        "rank": 11,
+        "chunk_id": "helpdesk-support-tiers#loc-002",
+        "score": 0.3412615656852722
+      },
+      {
+        "rank": 12,
+        "chunk_id": "pto-and-leave-policy#loc-000",
+        "score": 0.3412022590637207
+      },
+      {
+        "rank": 13,
+        "chunk_id": "parental-leave-policy#loc-001",
+        "score": 0.326829195022583
+      },
+      {
+        "rank": 14,
+        "chunk_id": "benefits-overview#loc-001",
+        "score": 0.3191928267478943
+      },
+      {
+        "rank": 15,
+        "chunk_id": "office-hours-and-holidays#loc-001",
+        "score": 0.31292110681533813
+      },
+      {
+        "rank": 16,
+        "chunk_id": "security-incident-response#loc-002",
+        "score": 0.307173490524292
+      },
+      {
+        "rank": 17,
+        "chunk_id": "code-review-policy#loc-002",
+        "score": 0.30689120292663574
+      },
+      {
+        "rank": 18,
+        "chunk_id": "benefits-overview#loc-002",
+        "score": 0.3044755458831787
+      },
+      {
+        "rank": 19,
+        "chunk_id": "first-day-checklist#loc-002",
+        "score": 0.2984767556190491
+      },
+      {
+        "rank": 20,
+        "chunk_id": "servicenow-request-guide#loc-002",
+        "score": 0.2949857711791992
+      }
+    ],
+    "sparse": [
+      {
+        "rank": 1,
+        "chunk_id": "pto-and-leave-policy#loc-001",
+        "score": 7.47265278046692
+      },
+      {
+        "rank": 2,
+        "chunk_id": "pto-and-leave-policy#loc-002",
+        "score": 3.741573955190286
+      },
+      {
+        "rank": 3,
+        "chunk_id": "business-travel-policy#loc-002",
+        "score": 3.489390848732786
+      },
+      {
+        "rank": 4,
+        "chunk_id": "pto-and-leave-policy#loc-003",
+        "score": 3.2814995144622947
+      },
+      {
+        "rank": 5,
+        "chunk_id": "pto-and-leave-policy#loc-000",
+        "score": 3.094128816320604
+      },
+      {
+        "rank": 6,
+        "chunk_id": "pto-and-leave-policy#loc-004",
+        "score": 2.6843146358217407
+      },
+      {
+        "rank": 7,
+        "chunk_id": "office-hours-and-holidays#loc-002",
+        "score": 2.5379263259614198
+      },
+      {
+        "rank": 8,
+        "chunk_id": "remote-work-policy#loc-001",
+        "score": 2.4066788045730565
+      },
+      {
+        "rank": 9,
+        "chunk_id": "acceptable-use-policy-it#loc-000",
+        "score": 0.0
+      },
+      {
+        "rank": 10,
+        "chunk_id": "acceptable-use-policy-it#loc-001",
+        "score": 0.0
+      },
+      {
+        "rank": 11,
+        "chunk_id": "acceptable-use-policy-it#loc-002",
+        "score": 0.0
+      },
+      {
+        "rank": 12,
+        "chunk_id": "acceptable-use-policy-it#loc-003",
+        "score": 0.0
+      },
+      {
+        "rank": 13,
+        "chunk_id": "access-provisioning-sla#loc-000",
+        "score": 0.0
+      },
+      {
+        "rank": 14,
+        "chunk_id": "access-provisioning-sla#loc-001",
+        "score": 0.0
+      },
+      {
+        "rank": 15,
+        "chunk_id": "access-provisioning-sla#loc-002",
+        "score": 0.0
+      },
+      {
+        "rank": 16,
+        "chunk_id": "ai-inc-product-overview#loc-000",
+        "score": 0.0
+      },
+      {
+        "rank": 17,
+        "chunk_id": "ai-inc-product-overview#loc-001",
+        "score": 0.0
+      },
+      {
+        "rank": 18,
+        "chunk_id": "ai-inc-product-overview#loc-002",
+        "score": 0.0
+      },
+      {
+        "rank": 19,
+        "chunk_id": "ai-inc-product-overview#loc-003",
+        "score": 0.0
+      },
+      {
+        "rank": 20,
+        "chunk_id": "benefits-overview#loc-000",
+        "score": 0.0
+      }
+    ],
+    "fused": [
+      {
+        "rank": 1,
+        "chunk_id": "pto-and-leave-policy#loc-001",
+        "score": 0.03278688524590164
+      },
+      {
+        "rank": 2,
+        "chunk_id": "pto-and-leave-policy#loc-002",
+        "score": 0.03225806451612903
+      },
+      {
+        "rank": 3,
+        "chunk_id": "pto-and-leave-policy#loc-004",
+        "score": 0.031024531024531024
+      },
+      {
+        "rank": 4,
+        "chunk_id": "office-hours-and-holidays#loc-002",
+        "score": 0.03055037313432836
+      },
+      {
+        "rank": 5,
+        "chunk_id": "remote-work-policy#loc-001",
+        "score": 0.030090497737556562
+      },
+      {
+        "rank": 6,
+        "chunk_id": "pto-and-leave-policy#loc-003",
+        "score": 0.029910714285714284
+      },
+      {
+        "rank": 7,
+        "chunk_id": "pto-and-leave-policy#loc-000",
+        "score": 0.029273504273504274
+      },
+      {
+        "rank": 8,
+        "chunk_id": "business-travel-policy#loc-002",
+        "score": 0.015873015873015872
+      },
+      {
+        "rank": 9,
+        "chunk_id": "employee-referral-program#loc-001",
+        "score": 0.015151515151515152
+      },
+      {
+        "rank": 10,
+        "chunk_id": "org-structure-overview#loc-003",
+        "score": 0.014925373134328358
+      },
+      {
+        "rank": 11,
+        "chunk_id": "on-call-rotation#loc-002",
+        "score": 0.014705882352941176
+      },
+      {
+        "rank": 12,
+        "chunk_id": "benefits-overview#loc-004",
+        "score": 0.014492753623188406
+      },
+      {
+        "rank": 13,
+        "chunk_id": "acceptable-use-policy-it#loc-000",
+        "score": 0.014492753623188406
+      },
+      {
+        "rank": 14,
+        "chunk_id": "acceptable-use-policy-it#loc-001",
+        "score": 0.014285714285714285
+      },
+      {
+        "rank": 15,
+        "chunk_id": "helpdesk-support-tiers#loc-002",
+        "score": 0.014084507042253521
+      },
+      {
+        "rank": 16,
+        "chunk_id": "acceptable-use-policy-it#loc-002",
+        "score": 0.014084507042253521
+      },
+      {
+        "rank": 17,
+        "chunk_id": "acceptable-use-policy-it#loc-003",
+        "score": 0.013888888888888888
+      },
+      {
+        "rank": 18,
+        "chunk_id": "parental-leave-policy#loc-001",
+        "score": 0.0136986301369863
+      },
+      {
+        "rank": 19,
+        "chunk_id": "access-provisioning-sla#loc-000",
+        "score": 0.0136986301369863
+      },
+      {
+        "rank": 20,
+        "chunk_id": "benefits-overview#loc-001",
+        "score": 0.013513513513513514
+      }
+    ],
+    "rerank_mode": "cross_encoder",
+    "rerank_log": [
+      {
+        "chunk_id": "pto-and-leave-policy#loc-001",
+        "rank_before": 1,
+        "score_before": 0.03278688524590164,
+        "rank_after": 1,
+        "score_after": 8.655829429626465
+      },
+      {
+        "chunk_id": "pto-and-leave-policy#loc-002",
+        "rank_before": 2,
+        "score_before": 0.03225806451612903,
+        "rank_after": 2,
+        "score_after": 4.1913018226623535
+      },
+      {
+        "chunk_id": "pto-and-leave-policy#loc-004",
+        "rank_before": 3,
+        "score_before": 0.031024531024531024,
+        "rank_after": 3,
+        "score_after": 3.4534311294555664
+      },
+      {
+        "chunk_id": "office-hours-and-holidays#loc-002",
+        "rank_before": 4,
+        "score_before": 0.03055037313432836,
+        "rank_after": 4,
+        "score_after": -4.289015769958496
+      },
+      {
+        "chunk_id": "remote-work-policy#loc-001",
+        "rank_before": 5,
+        "score_before": 0.030090497737556562,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "pto-and-leave-policy#loc-003",
+        "rank_before": 6,
+        "score_before": 0.029910714285714284,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "pto-and-leave-policy#loc-000",
+        "rank_before": 7,
+        "score_before": 0.029273504273504274,
+        "rank_after": 5,
+        "score_after": -6.312564849853516
+      },
+      {
+        "chunk_id": "business-travel-policy#loc-002",
+        "rank_before": 8,
+        "score_before": 0.015873015873015872,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "employee-referral-program#loc-001",
+        "rank_before": 9,
+        "score_before": 0.015151515151515152,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "org-structure-overview#loc-003",
+        "rank_before": 10,
+        "score_before": 0.014925373134328358,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "on-call-rotation#loc-002",
+        "rank_before": 11,
+        "score_before": 0.014705882352941176,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "benefits-overview#loc-004",
+        "rank_before": 12,
+        "score_before": 0.014492753623188406,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "acceptable-use-policy-it#loc-000",
+        "rank_before": 13,
+        "score_before": 0.014492753623188406,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "acceptable-use-policy-it#loc-001",
+        "rank_before": 14,
+        "score_before": 0.014285714285714285,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "helpdesk-support-tiers#loc-002",
+        "rank_before": 15,
+        "score_before": 0.014084507042253521,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "acceptable-use-policy-it#loc-002",
+        "rank_before": 16,
+        "score_before": 0.014084507042253521,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "acceptable-use-policy-it#loc-003",
+        "rank_before": 17,
+        "score_before": 0.013888888888888888,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "parental-leave-policy#loc-001",
+        "rank_before": 18,
+        "score_before": 0.0136986301369863,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "access-provisioning-sla#loc-000",
+        "rank_before": 19,
+        "score_before": 0.0136986301369863,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "benefits-overview#loc-001",
+        "rank_before": 20,
+        "score_before": 0.013513513513513514,
+        "rank_after": null,
+        "score_after": null
+      }
+    ],
+    "final_chunk_ids": [
+      "pto-and-leave-policy#loc-001",
+      "pto-and-leave-policy#loc-002",
+      "pto-and-leave-policy#loc-004",
+      "office-hours-and-holidays#loc-002",
+      "pto-and-leave-policy#loc-000"
+    ]
+  },
+  "agent_messages": [
+    {
+      "sender": "orchestrator",
+      "recipient": "orchestrator",
+      "message_type": "user_request",
+      "summary": "question=\"How many PTO days do full-time employees receive per year?...\" role=employee"
+    },
+    {
+      "sender": "orchestrator",
+      "recipient": "retriever",
+      "message_type": "retrieval_request",
+      "summary": "query=\"How many PTO days do full-time employees receive p...\""
+    },
+    {
+      "sender": "retriever",
+      "recipient": "orchestrator",
+      "message_type": "retrieval_result",
+      "summary": "chunks=5 status=ok"
+    },
+    {
+      "sender": "orchestrator",
+      "recipient": "synthesizer",
+      "message_type": "synthesis_request",
+      "summary": "round=1"
+    },
+    {
+      "sender": "synthesizer",
+      "recipient": "orchestrator",
+      "message_type": "synthesis_result",
+      "summary": "round=1 draft=\"Based on the retrieved policy excerpts, Full-time ...\""
+    },
+    {
+      "sender": "orchestrator",
+      "recipient": "safety_reviewer",
+      "message_type": "safety_review_request",
+      "summary": "round=1 draft_len=164"
+    },
+    {
+      "sender": "safety_reviewer",
+      "recipient": "orchestrator",
+      "message_type": "safety_verdict",
+      "summary": "decision=approve issues=[none]"
+    },
+    {
+      "sender": "orchestrator",
+      "recipient": "orchestrator",
+      "message_type": "workflow_complete",
+      "summary": "answer_len=164 regeneration_rounds=0"
+    }
+  ],
+  "safety_rounds": [
+    {
+      "round_number": 1,
+      "decision": "approve",
+      "critique": [],
+      "feedback_to_synthesizer": false
+    }
+  ],
+  "final_answer": "Based on the retrieved policy excerpts, Full-time employees: **20 PTO days** per year; max carryover **5 days** (forfeit March 31) [`pto-and-leave-policy#loc-001`].",
+  "regeneration_rounds": 0,
+  "console": "\n========================================================================\nPIPELINE RUN: happy-path-pto  (correlation_id=746088f7-7650-4d7a-8b2b-85e513c7d617)\n========================================================================\nQuestion: How many PTO days do full-time employees receive per year?\n\n--- [1] INPUT GUARDRAIL ---\n  decision : PASS\n  rule     : (none)\n\n--- [2] RETRIEVAL ---\n  query       : How many PTO days do full-time employees receive per year?\n  candidate_k : 20  |  top_k : 5\n  Dense (Chroma):\n    rank  chunk_id                                         score\n       1  pto-and-leave-policy#loc-001                    0.8071\n       2  pto-and-leave-policy#loc-002                    0.7194\n       3  pto-and-leave-policy#loc-004                    0.6780\n       4  office-hours-and-holidays#loc-002               0.4829\n       5  remote-work-policy#loc-001                      0.4552\n       6  employee-referral-program#loc-001               0.3930\n       7  org-structure-overview#loc-003                  0.3686\n       8  on-call-rotation#loc-002                        0.3658\n       9  benefits-overview#loc-004                       0.3568\n      10  pto-and-leave-policy#loc-003                    0.3564\n    ... (10 more)\n  Sparse (BM25):\n    rank  chunk_id                                         score\n       1  pto-and-leave-policy#loc-001                    7.4727\n       2  pto-and-leave-policy#loc-002                    3.7416\n       3  business-travel-policy#loc-002                  3.4894\n       4  pto-and-leave-policy#loc-003                    3.2815\n       5  pto-and-leave-policy#loc-000                    3.0941\n       6  pto-and-leave-policy#loc-004                    2.6843\n       7  office-hours-and-holidays#loc-002               2.5379\n       8  remote-work-policy#loc-001                      2.4067\n       9  acceptable-use-policy-it#loc-000                0.0000\n      10  acceptable-use-policy-it#loc-001                0.0000\n    ... (10 more)\n  Fused (RRF):\n    rank  chunk_id                                         score\n       1  pto-and-leave-policy#loc-001                    0.0328\n       2  pto-and-leave-policy#loc-002                    0.0323\n       3  pto-and-leave-policy#loc-004                    0.0310\n       4  office-hours-and-holidays#loc-002               0.0306\n       5  remote-work-policy#loc-001                      0.0301\n       6  pto-and-leave-policy#loc-003                    0.0299\n       7  pto-and-leave-policy#loc-000                    0.0293\n       8  business-travel-policy#loc-002                  0.0159\n       9  employee-referral-program#loc-001               0.0152\n      10  org-structure-overview#loc-003                  0.0149\n    ... (10 more)\n  Reranked (cross_encoder): 20 candidates -> top 5\n    chunk_id                                   rank_before score_before rank_after score_after\n    ------------------------------------------------------------------------------------------\n    pto-and-leave-policy#loc-001                         1       0.0328          1      8.6558\n    pto-and-leave-policy#loc-002                         2       0.0323          2      4.1913\n    pto-and-leave-policy#loc-004                         3       0.0310          3      3.4534\n    office-hours-and-holidays#loc-002                    4       0.0306          4     -4.2890\n    remote-work-policy#loc-001                           5       0.0301          -           -\n    pto-and-leave-policy#loc-003                         6       0.0299          -           -\n    pto-and-leave-policy#loc-000                         7       0.0293          5     -6.3126\n    business-travel-policy#loc-002                       8       0.0159          -           -\n    employee-referral-program#loc-001                    9       0.0152          -           -\n    org-structure-overview#loc-003                      10       0.0149          -           -\n    on-call-rotation#loc-002                            11       0.0147          -           -\n    benefits-overview#loc-004                           12       0.0145          -           -\n    acceptable-use-policy-it#loc-000                    13       0.0145          -           -\n    acceptable-use-policy-it#loc-001                    14       0.0143          -           -\n    helpdesk-support-tiers#loc-002                      15       0.0141          -           -\n    acceptable-use-policy-it#loc-002                    16       0.0141          -           -\n    acceptable-use-policy-it#loc-003                    17       0.0139          -           -\n    parental-leave-policy#loc-001                       18       0.0137          -           -\n    access-provisioning-sla#loc-000                     19       0.0137          -           -\n    benefits-overview#loc-001                           20       0.0135          -           -\n  Final order : pto-and-leave-policy#loc-001 -> pto-and-leave-policy#loc-002 -> pto-and-leave-policy#loc-004 -> office-hours-and-holidays#loc-002 -> pto-and-leave-policy#loc-000\n\n--- [3] INTER-AGENT MESSAGES ---\n  1. orchestrator -> orchestrator [user_request] question=\"How many PTO days do full-time employees receive per year?...\" role=employee\n  2. orchestrator -> retriever [retrieval_request] query=\"How many PTO days do full-time employees receive p...\"\n  3. retriever -> orchestrator [retrieval_result] chunks=5 status=ok\n  4. orchestrator -> synthesizer [synthesis_request] round=1\n  5. synthesizer -> orchestrator [synthesis_result] round=1 draft=\"Based on the retrieved policy excerpts, Full-time ...\"\n  6. orchestrator -> safety_reviewer [safety_review_request] round=1 draft_len=164\n  7. safety_reviewer -> orchestrator [safety_verdict] decision=approve issues=[none]\n  8. orchestrator -> orchestrator [workflow_complete] answer_len=164 regeneration_rounds=0\n\n--- [4] SAFETY REVIEWER ---\n  Round 1: APPROVE\n  Total regeneration rounds: 0\n\n--- [5] FINAL ANSWER ---\nBased on the retrieved policy excerpts, Full-time employees: **20 PTO days** per year; max carryover **5 days** (forfeit March 31) [`pto-and-leave-policy#loc-001`].\n\n  Inline citations: `pto-and-leave-policy#loc-001`\n\n========================================================================"
+}

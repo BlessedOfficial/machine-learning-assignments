@@ -1,0 +1,31 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "answer": {
+      "title": "Answer",
+      "type": "string"
+    },
+    "message_count": {
+      "minimum": 0,
+      "title": "Message Count",
+      "type": "integer"
+    },
+    "regeneration_rounds": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Regeneration Rounds",
+      "type": "integer"
+    },
+    "correlation_id": {
+      "title": "Correlation Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "answer",
+    "message_count",
+    "correlation_id"
+  ],
+  "title": "WorkflowComplete",
+  "type": "object"
+}

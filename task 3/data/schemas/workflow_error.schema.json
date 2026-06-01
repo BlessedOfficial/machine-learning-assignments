@@ -1,0 +1,33 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "error_code": {
+      "minLength": 1,
+      "title": "Error Code",
+      "type": "string"
+    },
+    "stage": {
+      "minLength": 1,
+      "title": "Stage",
+      "type": "string"
+    },
+    "rule_triggered": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Rule Triggered"
+    }
+  },
+  "required": [
+    "error_code",
+    "stage"
+  ],
+  "title": "WorkflowError",
+  "type": "object"
+}

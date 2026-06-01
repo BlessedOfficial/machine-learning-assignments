@@ -1,0 +1,12 @@
+openrouter
+python-dotenv
+pydantic
+sentence-transformers
+rank-bm25
+numpy
+chromadb
+langchain
+langchain-core
+langchain-openai
+langchainhub
+langsmith
