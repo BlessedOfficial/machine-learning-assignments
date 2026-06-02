@@ -1,0 +1,384 @@
+{
+  "correlation_id": "3aa7e2f4-265b-4b71-bd15-8f92b95638d0",
+  "started_at": "2026-06-02T16:02:23.827014+00:00",
+  "completed_at": "2026-06-02T16:03:55.367087+00:00",
+  "steps": [
+    {
+      "sequence": 1,
+      "sender": "orchestrator",
+      "recipient": "orchestrator",
+      "message_type": "user_request",
+      "message_id": "5eabd012-5284-4245-badf-ab49ef03f15e",
+      "summary": "question=\"Am i allowed to bring dogs?...\" role=intern",
+      "payload": {
+        "question": "Am i allowed to bring dogs?",
+        "user_role": "intern",
+        "top_k": null,
+        "min_score": null
+      }
+    },
+    {
+      "sequence": 2,
+      "sender": "orchestrator",
+      "recipient": "retriever",
+      "message_type": "retrieval_request",
+      "message_id": "8be27e0f-1acf-4ca2-b99f-f4fd01e27cf9",
+      "summary": "query=\"Am i allowed to bring dogs?...\"",
+      "payload": {
+        "query": "Am i allowed to bring dogs?",
+        "user_role": "intern",
+        "top_k": null,
+        "min_score": null
+      }
+    },
+    {
+      "sequence": 3,
+      "sender": "retriever",
+      "recipient": "orchestrator",
+      "message_type": "retrieval_result",
+      "message_id": "1f48cfc4-6a16-4c52-8d86-599cb6af69db",
+      "summary": "chunks=4 status=ok",
+      "payload": {
+        "query": "Am i allowed to bring dogs?",
+        "chunks": [
+          {
+            "chunk_id": "acceptable-use-policy-it#loc-001",
+            "text": "Company systems for business use; limited personal use allowed.",
+            "score": -10.194051742553711,
+            "metadata": {
+              "section": "IT Acceptable Use \u2014 AI.Inc",
+              "proposition_count": 1,
+              "paragraph_index": 1,
+              "source_file": "acceptable-use-policy-it.md",
+              "min_role": "employee",
+              "page": "2",
+              "agentic_summary": "",
+              "proposition_index": 0,
+              "agentic_title": "",
+              "policy_id": "IT-AUP-2023-08",
+              "url": "https://docs.ai.inc/internal/acceptable-use-policy-it"
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "acceptable-use-policy-it#loc-002",
+            "text": "Prohibited: illegal activity, credential sharing, bypassing security.",
+            "score": -10.573831558227539,
+            "metadata": {
+              "proposition_index": 0,
+              "page": "3",
+              "url": "https://docs.ai.inc/internal/acceptable-use-policy-it",
+              "source_file": "acceptable-use-policy-it.md",
+              "agentic_summary": "",
+              "section": "IT Acceptable Use \u2014 AI.Inc",
+              "policy_id": "IT-AUP-2023-08",
+              "agentic_title": "",
+              "min_role": "employee",
+              "proposition_count": 1,
+              "paragraph_index": 2
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "acceptable-use-policy-it#loc-003",
+            "text": "Contact: **it-policy@ai.inc**",
+            "score": -10.985807418823242,
+            "metadata": {
+              "source_file": "acceptable-use-policy-it.md",
+              "policy_id": "IT-AUP-2023-08",
+              "section": "IT Acceptable Use \u2014 AI.Inc",
+              "page": "4",
+              "url": "https://docs.ai.inc/internal/acceptable-use-policy-it",
+              "min_role": "employee",
+              "paragraph_index": 3,
+              "proposition_index": 0,
+              "agentic_title": "",
+              "agentic_summary": "",
+              "proposition_count": 1
+            },
+            "retrieval_sources": [
+              "bm25"
+            ]
+          },
+          {
+            "chunk_id": "acceptable-use-policy-it#loc-000",
+            "text": "# IT Acceptable Use \u2014 AI.Inc\n**Policy ID:** IT-AUP-2023-08",
+            "score": -11.070981979370117,
+            "metadata": {
+              "agentic_title": "",
+              "url": "https://docs.ai.inc/internal/acceptable-use-policy-it",
+              "source_file": "acceptable-use-policy-it.md",
+              "page": "1",
+              "paragraph_index": 0,
+              "proposition_index": 0,
+              "min_role": "employee",
+              "section": "IT Acceptable Use \u2014 AI.Inc",
+              "proposition_count": 1,
+              "agentic_summary": "",
+              "policy_id": "IT-AUP-2023-08"
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          }
+        ],
+        "chunk_count": 4,
+        "status": "ok"
+      }
+    },
+    {
+      "sequence": 4,
+      "sender": "orchestrator",
+      "recipient": "synthesizer",
+      "message_type": "synthesis_request",
+      "message_id": "973c56b9-d498-4f4b-8b02-3752a72af6c5",
+      "summary": "round=1",
+      "payload": {
+        "question": "Am i allowed to bring dogs?",
+        "chunks": [
+          {
+            "chunk_id": "acceptable-use-policy-it#loc-001",
+            "text": "Company systems for business use; limited personal use allowed.",
+            "score": -10.194051742553711,
+            "metadata": {
+              "section": "IT Acceptable Use \u2014 AI.Inc",
+              "proposition_count": 1,
+              "paragraph_index": 1,
+              "source_file": "acceptable-use-policy-it.md",
+              "min_role": "employee",
+              "page": "2",
+              "agentic_summary": "",
+              "proposition_index": 0,
+              "agentic_title": "",
+              "policy_id": "IT-AUP-2023-08",
+              "url": "https://docs.ai.inc/internal/acceptable-use-policy-it"
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "acceptable-use-policy-it#loc-002",
+            "text": "Prohibited: illegal activity, credential sharing, bypassing security.",
+            "score": -10.573831558227539,
+            "metadata": {
+              "proposition_index": 0,
+              "page": "3",
+              "url": "https://docs.ai.inc/internal/acceptable-use-policy-it",
+              "source_file": "acceptable-use-policy-it.md",
+              "agentic_summary": "",
+              "section": "IT Acceptable Use \u2014 AI.Inc",
+              "policy_id": "IT-AUP-2023-08",
+              "agentic_title": "",
+              "min_role": "employee",
+              "proposition_count": 1,
+              "paragraph_index": 2
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "acceptable-use-policy-it#loc-003",
+            "text": "Contact: **it-policy@ai.inc**",
+            "score": -10.985807418823242,
+            "metadata": {
+              "source_file": "acceptable-use-policy-it.md",
+              "policy_id": "IT-AUP-2023-08",
+              "section": "IT Acceptable Use \u2014 AI.Inc",
+              "page": "4",
+              "url": "https://docs.ai.inc/internal/acceptable-use-policy-it",
+              "min_role": "employee",
+              "paragraph_index": 3,
+              "proposition_index": 0,
+              "agentic_title": "",
+              "agentic_summary": "",
+              "proposition_count": 1
+            },
+            "retrieval_sources": [
+              "bm25"
+            ]
+          },
+          {
+            "chunk_id": "acceptable-use-policy-it#loc-000",
+            "text": "# IT Acceptable Use \u2014 AI.Inc\n**Policy ID:** IT-AUP-2023-08",
+            "score": -11.070981979370117,
+            "metadata": {
+              "agentic_title": "",
+              "url": "https://docs.ai.inc/internal/acceptable-use-policy-it",
+              "source_file": "acceptable-use-policy-it.md",
+              "page": "1",
+              "paragraph_index": 0,
+              "proposition_index": 0,
+              "min_role": "employee",
+              "section": "IT Acceptable Use \u2014 AI.Inc",
+              "proposition_count": 1,
+              "agentic_summary": "",
+              "policy_id": "IT-AUP-2023-08"
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          }
+        ],
+        "round_number": 1,
+        "critique": []
+      }
+    },
+    {
+      "sequence": 5,
+      "sender": "synthesizer",
+      "recipient": "orchestrator",
+      "message_type": "synthesis_result",
+      "message_id": "90b2fb71-e635-44d7-8b48-bf50f3ed5bdb",
+      "summary": "round=1 draft=\"I don't have enough information on bringing dogs i...\"",
+      "payload": {
+        "question": "Am i allowed to bring dogs?",
+        "draft": "I don't have enough information on bringing dogs in the retrieved excerpts.  \nSources: loc-001 loc-002 loc-003 loc-000 loc-002",
+        "round_number": 1,
+        "model_used": "openrouter/free"
+      }
+    },
+    {
+      "sequence": 6,
+      "sender": "orchestrator",
+      "recipient": "safety_reviewer",
+      "message_type": "safety_review_request",
+      "message_id": "946d4231-9547-4ce0-bbcd-0c5e4a2d05ab",
+      "summary": "round=1 draft_len=126",
+      "payload": {
+        "question": "Am i allowed to bring dogs?",
+        "draft": "I don't have enough information on bringing dogs in the retrieved excerpts.  \nSources: loc-001 loc-002 loc-003 loc-000 loc-002",
+        "chunks": [
+          {
+            "chunk_id": "acceptable-use-policy-it#loc-001",
+            "text": "Company systems for business use; limited personal use allowed.",
+            "score": -10.194051742553711,
+            "metadata": {
+              "section": "IT Acceptable Use \u2014 AI.Inc",
+              "proposition_count": 1,
+              "paragraph_index": 1,
+              "source_file": "acceptable-use-policy-it.md",
+              "min_role": "employee",
+              "page": "2",
+              "agentic_summary": "",
+              "proposition_index": 0,
+              "agentic_title": "",
+              "policy_id": "IT-AUP-2023-08",
+              "url": "https://docs.ai.inc/internal/acceptable-use-policy-it"
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "acceptable-use-policy-it#loc-002",
+            "text": "Prohibited: illegal activity, credential sharing, bypassing security.",
+            "score": -10.573831558227539,
+            "metadata": {
+              "proposition_index": 0,
+              "page": "3",
+              "url": "https://docs.ai.inc/internal/acceptable-use-policy-it",
+              "source_file": "acceptable-use-policy-it.md",
+              "agentic_summary": "",
+              "section": "IT Acceptable Use \u2014 AI.Inc",
+              "policy_id": "IT-AUP-2023-08",
+              "agentic_title": "",
+              "min_role": "employee",
+              "proposition_count": 1,
+              "paragraph_index": 2
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "acceptable-use-policy-it#loc-003",
+            "text": "Contact: **it-policy@ai.inc**",
+            "score": -10.985807418823242,
+            "metadata": {
+              "source_file": "acceptable-use-policy-it.md",
+              "policy_id": "IT-AUP-2023-08",
+              "section": "IT Acceptable Use \u2014 AI.Inc",
+              "page": "4",
+              "url": "https://docs.ai.inc/internal/acceptable-use-policy-it",
+              "min_role": "employee",
+              "paragraph_index": 3,
+              "proposition_index": 0,
+              "agentic_title": "",
+              "agentic_summary": "",
+              "proposition_count": 1
+            },
+            "retrieval_sources": [
+              "bm25"
+            ]
+          },
+          {
+            "chunk_id": "acceptable-use-policy-it#loc-000",
+            "text": "# IT Acceptable Use \u2014 AI.Inc\n**Policy ID:** IT-AUP-2023-08",
+            "score": -11.070981979370117,
+            "metadata": {
+              "agentic_title": "",
+              "url": "https://docs.ai.inc/internal/acceptable-use-policy-it",
+              "source_file": "acceptable-use-policy-it.md",
+              "page": "1",
+              "paragraph_index": 0,
+              "proposition_index": 0,
+              "min_role": "employee",
+              "section": "IT Acceptable Use \u2014 AI.Inc",
+              "proposition_count": 1,
+              "agentic_summary": "",
+              "policy_id": "IT-AUP-2023-08"
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          }
+        ],
+        "round_number": 1
+      }
+    },
+    {
+      "sequence": 7,
+      "sender": "safety_reviewer",
+      "recipient": "orchestrator",
+      "message_type": "safety_verdict",
+      "message_id": "56da5238-7d7d-4370-8a68-3866fbb30c04",
+      "summary": "decision=approve issues=[none]",
+      "payload": {
+        "decision": "approve",
+        "final_answer": "I don't have enough information on bringing dogs in the retrieved excerpts.  \nSources: loc-001 loc-002 loc-003 loc-000 loc-002",
+        "critique": [],
+        "round_number": 1
+      }
+    },
+    {
+      "sequence": 8,
+      "sender": "orchestrator",
+      "recipient": "orchestrator",
+      "message_type": "workflow_complete",
+      "message_id": "162c5cce-e4ef-47c9-8b07-670bb5f3f359",
+      "summary": "answer_len=126 regeneration_rounds=0",
+      "payload": {
+        "answer": "I don't have enough information on bringing dogs in the retrieved excerpts.  \nSources: loc-001 loc-002 loc-003 loc-000 loc-002",
+        "message_count": 8,
+        "regeneration_rounds": 0,
+        "correlation_id": "3aa7e2f4-265b-4b71-bd15-8f92b95638d0"
+      }
+    }
+  ],
+  "feedback_loops": []
+}

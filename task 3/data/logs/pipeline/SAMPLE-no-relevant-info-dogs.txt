@@ -1,0 +1,67 @@
+# Example: in-scope question with no matching policy (interactive main.py)
+#
+# Question: "Am i allowed to bring dogs?"
+# Role: intern
+#
+# Expected behavior:
+# - Input guard PASS (workplace policy question, not out-of-scope)
+# - Retrieval runs but corpus has NO pet/dog policy (30 minimal HR/IT docs only)
+# - RBAC drops manager-only chunks; synthesizer receives 4 employee-level IT chunks
+# - LLM correctly declines to invent facts; Safety Reviewer APPROVE
+# - "Sources: loc-001 ..." is weak formatting (not full chunk IDs) — citation extractor flags (none)
+#
+# Run yourself:
+#   .\.venv\Scripts\python.exe main.py
+#   Question: Am i allowed to bring dogs?
+#   Role: intern
+
+========================================================================
+PIPELINE RUN: live  (correlation_id=3aa7e2f4-265b-4b71-bd15-8f92b95638d0)
+========================================================================
+Question: Am i allowed to bring dogs?
+
+--- [1] INPUT GUARDRAIL ---
+  decision : PASS
+  rule     : (none)
+
+--- [2] RETRIEVAL ---
+  query       : Am i allowed to bring dogs?
+  candidate_k : 20  |  top_k : 5
+  Dense (Chroma):
+    rank  chunk_id                                         score
+       1  acceptable-use-policy-it#loc-002                0.1960
+       2  confidentiality-nda-policy#loc-002              0.1527
+       ...
+  Sparse (BM25):
+    rank  chunk_id                                         score
+       1  code-of-conduct#loc-002                         3.8383
+       2  remote-work-policy#loc-001                      3.0443
+       ...
+  Fused (RRF) + Reranked (cross_encoder): 20 candidates -> top 5
+  Final order (pre-RBAC pool): acceptable-use-policy-it#loc-001 -> ... -> data-classification-policy#loc-001
+  Chunks sent to synthesizer (after RBAC as intern): 4 (manager-only chunks removed)
+
+--- [3] INTER-AGENT MESSAGES ---
+  1. orchestrator -> orchestrator [user_request] question="Am i allowed to bring dogs?..." role=intern
+  2. orchestrator -> retriever [retrieval_request] query="Am i allowed to bring dogs?..."
+  3. retriever -> orchestrator [retrieval_result] chunks=4 status=ok
+  4. orchestrator -> synthesizer [synthesis_request] round=1
+  5. synthesizer -> orchestrator [synthesis_result] round=1 draft="I don't have enough information on bringing dogs i..."
+  6. orchestrator -> safety_reviewer [safety_review_request] round=1 draft_len=126
+  7. safety_reviewer -> orchestrator [safety_verdict] decision=approve issues=[none]
+  8. orchestrator -> orchestrator [workflow_complete] answer_len=126 regeneration_rounds=0
+
+--- [4] SAFETY REVIEWER ---
+  Round 1: APPROVE
+  Total regeneration rounds: 0
+
+--- [5] FINAL ANSWER ---
+I don't have enough information on bringing dogs in the retrieved excerpts.
+Sources: loc-001 loc-002 loc-003 loc-000 loc-002
+
+  Inline citations: (none - blocked or decline)
+
+========================================================================
+Artifacts:
+  data/logs/traces/3aa7e2f4-265b-4b71-bd15-8f92b95638d0.json
+  data/logs/pipeline/3aa7e2f4-265b-4b71-bd15-8f92b95638d0.pipeline.log.json
