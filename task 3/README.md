@@ -37,6 +37,8 @@ Run:
 .\.venv\Scripts\python.exe scripts\run_redteam.py           # 8 adversarial tests (expect 8/8 PASS)
 ```
 
+Example console output (no need to run locally): [SAMPLE-console-output.txt](data/logs/pipeline/SAMPLE-console-output.txt) · [SAMPLE-no-relevant-info-dogs.txt](data/logs/pipeline/SAMPLE-no-relevant-info-dogs.txt)
+
 Use `.\.venv\Scripts\python.exe` on Windows if `python` is not on PATH.
 
 ---
@@ -64,16 +66,25 @@ Corpus: **30** docs → **123** chunks in `data/chunks/chunks.jsonl`, indexed in
 
 ---
 
-## Logs & samples
+## Logs & console output samples
+
+Every run prints a 5-section pipeline log when `SHOW_PIPELINE_LOG=true` (default). Saved JSON logs use `{correlation_id}` in the filename.
+
+### Sample console output (checked in)
+
+| Scenario | File |
+|----------|------|
+| Red-team block + happy-path PTO (`run_pipeline_demo.py`) | [SAMPLE-console-output.txt](data/logs/pipeline/SAMPLE-console-output.txt) |
+| In-scope question, no matching policy (`main.py`, dogs example) | [SAMPLE-no-relevant-info-dogs.txt](data/logs/pipeline/SAMPLE-no-relevant-info-dogs.txt) |
+| Blocked request agent trace (JSON) | [SAMPLE-blocked-request.trace.json](data/logs/traces/SAMPLE-blocked-request.trace.json) |
+
+### Runtime log paths
 
 | Artifact | Path |
 |----------|------|
-| Pipeline log (guard, retrieval scores, messages, verdict, answer) | `data/logs/pipeline/{correlation_id}.pipeline.log.json` |
+| Pipeline log JSON | `data/logs/pipeline/{correlation_id}.pipeline.log.json` |
 | Agent message trace | `data/logs/traces/{correlation_id}.json` |
 | Guardrail rejections | `data/logs/guardrail_incidents.jsonl` |
-| Sample console output | `data/logs/pipeline/SAMPLE-console-output.txt` |
-
-Set `SHOW_PIPELINE_LOG=true` (default) to print the pipeline log in the terminal.
 
 ---
 
