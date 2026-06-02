@@ -2,10 +2,7 @@
 
 RAG-based internal policy Q&A with hybrid retrieval, multi-agent orchestration, and input/output guardrails.
 
-| Task | Summary | Spec |
-|------|---------|------|
-| [Task 2](../task%202/README.md) | Routed research + Reflexion (Best-of-N, fan-in, critic loop) | [task2.md](https://github.com/BeniaDev/agents_course_tsu/blob/main/task2.md) |
-| **Task 3** (here) | RAG + safety + Orchestrator–Worker agents + RBAC + logging | [task3.md](https://github.com/BeniaDev/agents_course_tsu/blob/main/task3.md) |
+**Assignment:** [Task 3 — Safety, RAG & Communication](https://github.com/BeniaDev/agents_course_tsu/blob/main/task3.md)
 
 ---
 
