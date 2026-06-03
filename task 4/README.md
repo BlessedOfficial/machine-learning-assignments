@@ -8,11 +8,19 @@ Multi-strategy reasoning (ReAct, Plan-and-Execute, Self-Consistency, etc.) with 
 
 ## Quick start
 
-**Prerequisites:** Python 3.11+, `.venv`, 
+**Prerequisites:** Python 3.11+, `.venv`, OpenRouter API key in `.env`.
 
 ```powershell
 cd "task 4"
 uv venv && uv pip install -r requirements.txt
+```
+
+Copy `.env.example` to `.env` and set `OPENROUTER_API_KEY`.
+
+Ask a question (solver LLM):
+
+```powershell
+.\.venv\Scripts\python.exe main.py
 ```
 
 ### GSM8K golden set (35 problems)
