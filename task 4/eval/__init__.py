@@ -2,9 +2,7 @@ from eval.baseline import diff_against_baseline, load_baseline, save_baseline
 from eval.gsm8k_loader import (
     align_questions_and_answers,
     load_golden_answers,
-    load_golden_problems,
     load_golden_questions,
-    load_gsm8k_subset,
     parse_gsm8k_answer,
 )
 from eval.judge import JudgeAgreementReport, grade_with_judge, sanity_check_judge
@@ -23,9 +21,7 @@ from eval.stats import bootstrap_ci, mcnemar_test, wilson_ci
 __all__ = [
     "align_questions_and_answers",
     "load_golden_answers",
-    "load_golden_problems",
     "load_golden_questions",
-    "load_gsm8k_subset",
     "parse_gsm8k_answer",
     "exact_match",
     "normalize_answer",

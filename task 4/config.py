@@ -30,9 +30,3 @@ GOLDEN_ANSWERS_PATH = Path(
         _ROOT / "data" / "golden" / "gsm8k_test_35_answers.jsonl",
     )
 )
-# Legacy combined file (optional)
-GOLDEN_SET_PATH = Path(
-    os.getenv("GOLDEN_SET_PATH", _ROOT / "data" / "golden" / "gsm8k_test_35.jsonl")
-)
-GSM8K_SUBSET_SIZE = int(os.getenv("GSM8K_SUBSET_SIZE", "35"))
-GSM8K_SUBSET_SEED = int(os.getenv("GSM8K_SUBSET_SEED", "42"))
