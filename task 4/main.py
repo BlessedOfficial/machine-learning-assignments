@@ -1,7 +1,7 @@
 import asyncio
 import uuid
 
-from strategies import PlanAndExecuteStrategy, Problem
+from strategies import Problem, ProgramOfThoughtStrategy
 
 
 def _print_trace(trace) -> None:
@@ -16,8 +16,8 @@ async def main() -> None:
         print("No question provided.")
         return
 
-    print("\nPlan-and-Execute solving...\n")
-    trace = await PlanAndExecuteStrategy().solve(
+    print("\nProgram-of-Thought solving...\n")
+    trace = await ProgramOfThoughtStrategy().solve(
         Problem(id=f"interactive-{uuid.uuid4().hex[:8]}", question=question)
     )
 
