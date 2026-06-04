@@ -17,7 +17,7 @@ uv venv && uv pip install -r requirements.txt
 
 Copy `.env.example` to `.env` and set `OPENROUTER_API_KEY`.
 
-Ask a question (solver LLM):
+Ask a math question (ReAct + calculator):
 
 ```powershell
 .\.venv\Scripts\python.exe main.py
