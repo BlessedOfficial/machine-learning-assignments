@@ -1,0 +1,533 @@
+{
+  "run_label": "live",
+  "correlation_id": "3aa7e2f4-265b-4b71-bd15-8f92b95638d0",
+  "question": "Am i allowed to bring dogs?",
+  "timestamp": "2026-06-02T16:03:55.367087+00:00",
+  "input_guard": {
+    "decision": "pass",
+    "rule": null,
+    "pii_flags": []
+  },
+  "retrieval": {
+    "query": "Am i allowed to bring dogs?",
+    "candidate_k": 20,
+    "top_k": 5,
+    "dense": [
+      {
+        "rank": 1,
+        "chunk_id": "acceptable-use-policy-it#loc-002",
+        "score": 0.19601565599441528
+      },
+      {
+        "rank": 2,
+        "chunk_id": "confidentiality-nda-policy#loc-002",
+        "score": 0.15274083614349365
+      },
+      {
+        "rank": 3,
+        "chunk_id": "ai-inc-product-overview#loc-002",
+        "score": 0.14371120929718018
+      },
+      {
+        "rank": 4,
+        "chunk_id": "remote-work-policy#loc-002",
+        "score": 0.14162307977676392
+      },
+      {
+        "rank": 5,
+        "chunk_id": "data-classification-policy#loc-001",
+        "score": 0.1371551752090454
+      },
+      {
+        "rank": 6,
+        "chunk_id": "business-travel-policy#loc-001",
+        "score": 0.13555550575256348
+      },
+      {
+        "rank": 7,
+        "chunk_id": "access-provisioning-sla#loc-002",
+        "score": 0.12610530853271484
+      },
+      {
+        "rank": 8,
+        "chunk_id": "employee-referral-program#loc-002",
+        "score": 0.12424349784851074
+      },
+      {
+        "rank": 9,
+        "chunk_id": "business-travel-policy#loc-002",
+        "score": 0.10705536603927612
+      },
+      {
+        "rank": 10,
+        "chunk_id": "acceptable-use-policy-it#loc-000",
+        "score": 0.10114645957946777
+      },
+      {
+        "rank": 11,
+        "chunk_id": "servicenow-request-guide#loc-002",
+        "score": 0.09515714645385742
+      },
+      {
+        "rank": 12,
+        "chunk_id": "office-hours-and-holidays#loc-001",
+        "score": 0.0919041633605957
+      },
+      {
+        "rank": 13,
+        "chunk_id": "data-classification-policy#loc-002",
+        "score": 0.09042966365814209
+      },
+      {
+        "rank": 14,
+        "chunk_id": "expense-reimbursement#loc-001",
+        "score": 0.08756965398788452
+      },
+      {
+        "rank": 15,
+        "chunk_id": "code-of-conduct#loc-000",
+        "score": 0.08398079872131348
+      },
+      {
+        "rank": 16,
+        "chunk_id": "laptop-equipment-policy#loc-000",
+        "score": 0.08131825923919678
+      },
+      {
+        "rank": 17,
+        "chunk_id": "clean-desk-policy#loc-002",
+        "score": 0.07837998867034912
+      },
+      {
+        "rank": 18,
+        "chunk_id": "code-of-conduct#loc-001",
+        "score": 0.07734882831573486
+      },
+      {
+        "rank": 19,
+        "chunk_id": "acceptable-use-policy-it#loc-001",
+        "score": 0.07692593336105347
+      },
+      {
+        "rank": 20,
+        "chunk_id": "first-day-checklist#loc-001",
+        "score": 0.07566553354263306
+      }
+    ],
+    "sparse": [
+      {
+        "rank": 1,
+        "chunk_id": "code-of-conduct#loc-002",
+        "score": 3.838332126788208
+      },
+      {
+        "rank": 2,
+        "chunk_id": "remote-work-policy#loc-001",
+        "score": 3.044342840727375
+      },
+      {
+        "rank": 3,
+        "chunk_id": "acceptable-use-policy-it#loc-000",
+        "score": 0.0
+      },
+      {
+        "rank": 4,
+        "chunk_id": "acceptable-use-policy-it#loc-001",
+        "score": 0.0
+      },
+      {
+        "rank": 5,
+        "chunk_id": "acceptable-use-policy-it#loc-002",
+        "score": 0.0
+      },
+      {
+        "rank": 6,
+        "chunk_id": "acceptable-use-policy-it#loc-003",
+        "score": 0.0
+      },
+      {
+        "rank": 7,
+        "chunk_id": "access-provisioning-sla#loc-000",
+        "score": 0.0
+      },
+      {
+        "rank": 8,
+        "chunk_id": "access-provisioning-sla#loc-001",
+        "score": 0.0
+      },
+      {
+        "rank": 9,
+        "chunk_id": "access-provisioning-sla#loc-002",
+        "score": 0.0
+      },
+      {
+        "rank": 10,
+        "chunk_id": "ai-inc-product-overview#loc-000",
+        "score": 0.0
+      },
+      {
+        "rank": 11,
+        "chunk_id": "ai-inc-product-overview#loc-001",
+        "score": 0.0
+      },
+      {
+        "rank": 12,
+        "chunk_id": "ai-inc-product-overview#loc-002",
+        "score": 0.0
+      },
+      {
+        "rank": 13,
+        "chunk_id": "ai-inc-product-overview#loc-003",
+        "score": 0.0
+      },
+      {
+        "rank": 14,
+        "chunk_id": "benefits-overview#loc-000",
+        "score": 0.0
+      },
+      {
+        "rank": 15,
+        "chunk_id": "benefits-overview#loc-001",
+        "score": 0.0
+      },
+      {
+        "rank": 16,
+        "chunk_id": "benefits-overview#loc-002",
+        "score": 0.0
+      },
+      {
+        "rank": 17,
+        "chunk_id": "benefits-overview#loc-003",
+        "score": 0.0
+      },
+      {
+        "rank": 18,
+        "chunk_id": "benefits-overview#loc-004",
+        "score": 0.0
+      },
+      {
+        "rank": 19,
+        "chunk_id": "benefits-overview#loc-005",
+        "score": 0.0
+      },
+      {
+        "rank": 20,
+        "chunk_id": "business-travel-policy#loc-000",
+        "score": 0.0
+      }
+    ],
+    "fused": [
+      {
+        "rank": 1,
+        "chunk_id": "acceptable-use-policy-it#loc-002",
+        "score": 0.03177805800756621
+      },
+      {
+        "rank": 2,
+        "chunk_id": "acceptable-use-policy-it#loc-000",
+        "score": 0.030158730158730156
+      },
+      {
+        "rank": 3,
+        "chunk_id": "ai-inc-product-overview#loc-002",
+        "score": 0.02976190476190476
+      },
+      {
+        "rank": 4,
+        "chunk_id": "access-provisioning-sla#loc-002",
+        "score": 0.029418126757516764
+      },
+      {
+        "rank": 5,
+        "chunk_id": "acceptable-use-policy-it#loc-001",
+        "score": 0.028283227848101264
+      },
+      {
+        "rank": 6,
+        "chunk_id": "code-of-conduct#loc-002",
+        "score": 0.01639344262295082
+      },
+      {
+        "rank": 7,
+        "chunk_id": "confidentiality-nda-policy#loc-002",
+        "score": 0.016129032258064516
+      },
+      {
+        "rank": 8,
+        "chunk_id": "remote-work-policy#loc-001",
+        "score": 0.016129032258064516
+      },
+      {
+        "rank": 9,
+        "chunk_id": "remote-work-policy#loc-002",
+        "score": 0.015625
+      },
+      {
+        "rank": 10,
+        "chunk_id": "data-classification-policy#loc-001",
+        "score": 0.015384615384615385
+      },
+      {
+        "rank": 11,
+        "chunk_id": "business-travel-policy#loc-001",
+        "score": 0.015151515151515152
+      },
+      {
+        "rank": 12,
+        "chunk_id": "acceptable-use-policy-it#loc-003",
+        "score": 0.015151515151515152
+      },
+      {
+        "rank": 13,
+        "chunk_id": "access-provisioning-sla#loc-000",
+        "score": 0.014925373134328358
+      },
+      {
+        "rank": 14,
+        "chunk_id": "employee-referral-program#loc-002",
+        "score": 0.014705882352941176
+      },
+      {
+        "rank": 15,
+        "chunk_id": "access-provisioning-sla#loc-001",
+        "score": 0.014705882352941176
+      },
+      {
+        "rank": 16,
+        "chunk_id": "business-travel-policy#loc-002",
+        "score": 0.014492753623188406
+      },
+      {
+        "rank": 17,
+        "chunk_id": "ai-inc-product-overview#loc-000",
+        "score": 0.014285714285714285
+      },
+      {
+        "rank": 18,
+        "chunk_id": "servicenow-request-guide#loc-002",
+        "score": 0.014084507042253521
+      },
+      {
+        "rank": 19,
+        "chunk_id": "ai-inc-product-overview#loc-001",
+        "score": 0.014084507042253521
+      },
+      {
+        "rank": 20,
+        "chunk_id": "office-hours-and-holidays#loc-001",
+        "score": 0.013888888888888888
+      }
+    ],
+    "rerank_mode": "cross_encoder",
+    "rerank_log": [
+      {
+        "chunk_id": "acceptable-use-policy-it#loc-002",
+        "rank_before": 1,
+        "score_before": 0.03177805800756621,
+        "rank_after": 2,
+        "score_after": -10.573831558227539
+      },
+      {
+        "chunk_id": "acceptable-use-policy-it#loc-000",
+        "rank_before": 2,
+        "score_before": 0.030158730158730156,
+        "rank_after": 4,
+        "score_after": -11.070981979370117
+      },
+      {
+        "chunk_id": "ai-inc-product-overview#loc-002",
+        "rank_before": 3,
+        "score_before": 0.02976190476190476,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "access-provisioning-sla#loc-002",
+        "rank_before": 4,
+        "score_before": 0.029418126757516764,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "acceptable-use-policy-it#loc-001",
+        "rank_before": 5,
+        "score_before": 0.028283227848101264,
+        "rank_after": 1,
+        "score_after": -10.194051742553711
+      },
+      {
+        "chunk_id": "code-of-conduct#loc-002",
+        "rank_before": 6,
+        "score_before": 0.01639344262295082,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "confidentiality-nda-policy#loc-002",
+        "rank_before": 7,
+        "score_before": 0.016129032258064516,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "remote-work-policy#loc-001",
+        "rank_before": 8,
+        "score_before": 0.016129032258064516,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "remote-work-policy#loc-002",
+        "rank_before": 9,
+        "score_before": 0.015625,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "data-classification-policy#loc-001",
+        "rank_before": 10,
+        "score_before": 0.015384615384615385,
+        "rank_after": 5,
+        "score_after": -11.071845054626465
+      },
+      {
+        "chunk_id": "business-travel-policy#loc-001",
+        "rank_before": 11,
+        "score_before": 0.015151515151515152,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "acceptable-use-policy-it#loc-003",
+        "rank_before": 12,
+        "score_before": 0.015151515151515152,
+        "rank_after": 3,
+        "score_after": -10.985807418823242
+      },
+      {
+        "chunk_id": "access-provisioning-sla#loc-000",
+        "rank_before": 13,
+        "score_before": 0.014925373134328358,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "employee-referral-program#loc-002",
+        "rank_before": 14,
+        "score_before": 0.014705882352941176,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "access-provisioning-sla#loc-001",
+        "rank_before": 15,
+        "score_before": 0.014705882352941176,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "business-travel-policy#loc-002",
+        "rank_before": 16,
+        "score_before": 0.014492753623188406,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "ai-inc-product-overview#loc-000",
+        "rank_before": 17,
+        "score_before": 0.014285714285714285,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "servicenow-request-guide#loc-002",
+        "rank_before": 18,
+        "score_before": 0.014084507042253521,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "ai-inc-product-overview#loc-001",
+        "rank_before": 19,
+        "score_before": 0.014084507042253521,
+        "rank_after": null,
+        "score_after": null
+      },
+      {
+        "chunk_id": "office-hours-and-holidays#loc-001",
+        "rank_before": 20,
+        "score_before": 0.013888888888888888,
+        "rank_after": null,
+        "score_after": null
+      }
+    ],
+    "final_chunk_ids": [
+      "acceptable-use-policy-it#loc-001",
+      "acceptable-use-policy-it#loc-002",
+      "acceptable-use-policy-it#loc-003",
+      "acceptable-use-policy-it#loc-000",
+      "data-classification-policy#loc-001"
+    ]
+  },
+  "agent_messages": [
+    {
+      "sender": "orchestrator",
+      "recipient": "orchestrator",
+      "message_type": "user_request",
+      "summary": "question=\"Am i allowed to bring dogs?...\" role=intern"
+    },
+    {
+      "sender": "orchestrator",
+      "recipient": "retriever",
+      "message_type": "retrieval_request",
+      "summary": "query=\"Am i allowed to bring dogs?...\""
+    },
+    {
+      "sender": "retriever",
+      "recipient": "orchestrator",
+      "message_type": "retrieval_result",
+      "summary": "chunks=4 status=ok"
+    },
+    {
+      "sender": "orchestrator",
+      "recipient": "synthesizer",
+      "message_type": "synthesis_request",
+      "summary": "round=1"
+    },
+    {
+      "sender": "synthesizer",
+      "recipient": "orchestrator",
+      "message_type": "synthesis_result",
+      "summary": "round=1 draft=\"I don't have enough information on bringing dogs i...\""
+    },
+    {
+      "sender": "orchestrator",
+      "recipient": "safety_reviewer",
+      "message_type": "safety_review_request",
+      "summary": "round=1 draft_len=126"
+    },
+    {
+      "sender": "safety_reviewer",
+      "recipient": "orchestrator",
+      "message_type": "safety_verdict",
+      "summary": "decision=approve issues=[none]"
+    },
+    {
+      "sender": "orchestrator",
+      "recipient": "orchestrator",
+      "message_type": "workflow_complete",
+      "summary": "answer_len=126 regeneration_rounds=0"
+    }
+  ],
+  "safety_rounds": [
+    {
+      "round_number": 1,
+      "decision": "approve",
+      "critique": [],
+      "feedback_to_synthesizer": false
+    }
+  ],
+  "final_answer": "I don't have enough information on bringing dogs in the retrieved excerpts.  \nSources: loc-001 loc-002 loc-003 loc-000 loc-002",
+  "regeneration_rounds": 0,
+  "console": "\n========================================================================\nPIPELINE RUN: live  (correlation_id=3aa7e2f4-265b-4b71-bd15-8f92b95638d0)\n========================================================================\nQuestion: Am i allowed to bring dogs?\n\n--- [1] INPUT GUARDRAIL ---\n  decision : PASS\n  rule     : (none)\n\n--- [2] RETRIEVAL ---\n  query       : Am i allowed to bring dogs?\n  candidate_k : 20  |  top_k : 5\n  Dense (Chroma):\n    rank  chunk_id                                         score\n       1  acceptable-use-policy-it#loc-002                0.1960\n       2  confidentiality-nda-policy#loc-002              0.1527\n       3  ai-inc-product-overview#loc-002                 0.1437\n       4  remote-work-policy#loc-002                      0.1416\n       5  data-classification-policy#loc-001              0.1372\n       6  business-travel-policy#loc-001                  0.1356\n       7  access-provisioning-sla#loc-002                 0.1261\n       8  employee-referral-program#loc-002               0.1242\n       9  business-travel-policy#loc-002                  0.1071\n      10  acceptable-use-policy-it#loc-000                0.1011\n    ... (10 more)\n  Sparse (BM25):\n    rank  chunk_id                                         score\n       1  code-of-conduct#loc-002                         3.8383\n       2  remote-work-policy#loc-001                      3.0443\n       3  acceptable-use-policy-it#loc-000                0.0000\n       4  acceptable-use-policy-it#loc-001                0.0000\n       5  acceptable-use-policy-it#loc-002                0.0000\n       6  acceptable-use-policy-it#loc-003                0.0000\n       7  access-provisioning-sla#loc-000                 0.0000\n       8  access-provisioning-sla#loc-001                 0.0000\n       9  access-provisioning-sla#loc-002                 0.0000\n      10  ai-inc-product-overview#loc-000                 0.0000\n    ... (10 more)\n  Fused (RRF):\n    rank  chunk_id                                         score\n       1  acceptable-use-policy-it#loc-002                0.0318\n       2  acceptable-use-policy-it#loc-000                0.0302\n       3  ai-inc-product-overview#loc-002                 0.0298\n       4  access-provisioning-sla#loc-002                 0.0294\n       5  acceptable-use-policy-it#loc-001                0.0283\n       6  code-of-conduct#loc-002                         0.0164\n       7  confidentiality-nda-policy#loc-002              0.0161\n       8  remote-work-policy#loc-001                      0.0161\n       9  remote-work-policy#loc-002                      0.0156\n      10  data-classification-policy#loc-001              0.0154\n    ... (10 more)\n  Reranked (cross_encoder): 20 candidates -> top 5\n    chunk_id                                   rank_before score_before rank_after score_after\n    ------------------------------------------------------------------------------------------\n    acceptable-use-policy-it#loc-002                     1       0.0318          2    -10.5738\n    acceptable-use-policy-it#loc-000                     2       0.0302          4    -11.0710\n    ai-inc-product-overview#loc-002                      3       0.0298          -           -\n    access-provisioning-sla#loc-002                      4       0.0294          -           -\n    acceptable-use-policy-it#loc-001                     5       0.0283          1    -10.1941\n    code-of-conduct#loc-002                              6       0.0164          -           -\n    confidentiality-nda-policy#loc-002                   7       0.0161          -           -\n    remote-work-policy#loc-001                           8       0.0161          -           -\n    remote-work-policy#loc-002                           9       0.0156          -           -\n    data-classification-policy#loc-001                  10       0.0154          5    -11.0718\n    business-travel-policy#loc-001                      11       0.0152          -           -\n    acceptable-use-policy-it#loc-003                    12       0.0152          3    -10.9858\n    access-provisioning-sla#loc-000                     13       0.0149          -           -\n    employee-referral-program#loc-002                   14       0.0147          -           -\n    access-provisioning-sla#loc-001                     15       0.0147          -           -\n    business-travel-policy#loc-002                      16       0.0145          -           -\n    ai-inc-product-overview#loc-000                     17       0.0143          -           -\n    servicenow-request-guide#loc-002                    18       0.0141          -           -\n    ai-inc-product-overview#loc-001                     19       0.0141          -           -\n    office-hours-and-holidays#loc-001                   20       0.0139          -           -\n  Final order : acceptable-use-policy-it#loc-001 -> acceptable-use-policy-it#loc-002 -> acceptable-use-policy-it#loc-003 -> acceptable-use-policy-it#loc-000 -> data-classification-policy#loc-001\n\n--- [3] INTER-AGENT MESSAGES ---\n  1. orchestrator -> orchestrator [user_request] question=\"Am i allowed to bring dogs?...\" role=intern\n  2. orchestrator -> retriever [retrieval_request] query=\"Am i allowed to bring dogs?...\"\n  3. retriever -> orchestrator [retrieval_result] chunks=4 status=ok\n  4. orchestrator -> synthesizer [synthesis_request] round=1\n  5. synthesizer -> orchestrator [synthesis_result] round=1 draft=\"I don't have enough information on bringing dogs i...\"\n  6. orchestrator -> safety_reviewer [safety_review_request] round=1 draft_len=126\n  7. safety_reviewer -> orchestrator [safety_verdict] decision=approve issues=[none]\n  8. orchestrator -> orchestrator [workflow_complete] answer_len=126 regeneration_rounds=0\n\n--- [4] SAFETY REVIEWER ---\n  Round 1: APPROVE\n  Total regeneration rounds: 0\n\n--- [5] FINAL ANSWER ---\nI don't have enough information on bringing dogs in the retrieved excerpts.  \nSources: loc-001 loc-002 loc-003 loc-000 loc-002\n\n  Inline citations: (none - blocked or decline)\n\n========================================================================"
+}

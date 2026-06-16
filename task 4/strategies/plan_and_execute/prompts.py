@@ -106,8 +106,9 @@ numeric answer used for exact-match grading.
 
 Rules:
 - Output **only** one line: `finish[NUMBER]`
-- NUMBER must be digits (and optional decimal point); no units, no dollar sign.
+- NUMBER must be digits (and optional decimal point); no units, no dollar sign, no commas.
 - Prefer integers when the answer is whole (14 not 14.0).
+- This bare number is used for exact mathematical comparison against the reference.
 - If step results conflict, reconcile using the problem text and the last reliable step.
 """
 

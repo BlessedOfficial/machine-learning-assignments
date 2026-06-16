@@ -1,5 +1,0 @@
-openrouter
-python-dotenv
-pydantic
-numpy
-scipy

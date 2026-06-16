@@ -1,0 +1,6 @@
+{
+  "number": 11,
+  "id": "gsm8k-test-289",
+  "ground_truth": "16",
+  "full_solution": "At half the speed, the car in the slow lane travels at a speed of 1/2*60 = <<1/2*60=30>>30 miles per hour.\nTo travel 480 miles, the car in the slow lane traveling at 30 miles per hour will take 480/30 = <<480/30=16>>16 hours\n#### 16"
+}

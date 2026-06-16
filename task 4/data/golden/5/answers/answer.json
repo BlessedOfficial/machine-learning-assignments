@@ -1,0 +1,6 @@
+{
+  "number": 5,
+  "id": "gsm8k-test-176",
+  "ground_truth": "100",
+  "full_solution": "If there were 80 Japanese, the number of Chinese was 240-80=<<240-80=160>>160.\nSince there were 60 boys in the Chinese team, there were 160-60 = 100 girls in the Chinese team.\n#### 100"
+}

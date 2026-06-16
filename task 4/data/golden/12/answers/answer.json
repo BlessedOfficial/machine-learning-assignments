@@ -1,0 +1,6 @@
+{
+  "number": 12,
+  "id": "gsm8k-test-400",
+  "ground_truth": "48",
+  "full_solution": "He drank 8*2=<<8*2=16>>16 ounces of milk\nSo he drank 16*3=<<16*3=48>>48 calories of milk\n#### 48"
+}

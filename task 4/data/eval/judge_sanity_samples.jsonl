@@ -1,0 +1,10 @@
+{"id":"sanity-01","question":"Jean has 30 lollipops and eats 2, then packs 2 per bag. How many bags?","expected":"14","prediction":"14","human_is_correct":true}
+{"id":"sanity-02","question":"Truck limit is 5000 lbs, truck+driver 3755 lbs, each box 15 lbs. Max boxes?","expected":"83","prediction":"82","human_is_correct":false}
+{"id":"sanity-03","question":"A value doubles from 3 to 6 and then grows by 4. Final value?","expected":"10","prediction":"10.0","human_is_correct":true}
+{"id":"sanity-04","question":"If x=20 and y=5, what is x+y?","expected":"25","prediction":"$25","human_is_correct":true}
+{"id":"sanity-05","question":"12 teams each with 4 players. Total players?","expected":"48","prediction":"49","human_is_correct":false}
+{"id":"sanity-06","question":"Profit on 5000 at 2.5%","expected":"125","prediction":"124.9","human_is_correct":false}
+{"id":"sanity-07","question":"How many is 40% of 200?","expected":"80","prediction":"80","human_is_correct":true}
+{"id":"sanity-08","question":"How many is 40% of 200?","expected":"80","prediction":"Answer: 80","human_is_correct":true}
+{"id":"sanity-09","question":"A loaf has 24 slices, one person eats 2/day, another eats 4/day. How many days?","expected":"4","prediction":"4","human_is_correct":true}
+{"id":"sanity-10","question":"How many bags from 28 lollipops at 2 per bag?","expected":"14","prediction":"13","human_is_correct":false}

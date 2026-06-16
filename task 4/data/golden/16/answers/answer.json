@@ -1,0 +1,6 @@
+{
+  "number": 16,
+  "id": "gsm8k-test-562",
+  "ground_truth": "82",
+  "full_solution": "5 degrees an hour for 10 hours 5*10=<<5*10=50>>50 degrees\nthe pyramid is 32 degrees from the ground so 32+50=<<32+50=82>>82 degrees\n#### 82"
+}

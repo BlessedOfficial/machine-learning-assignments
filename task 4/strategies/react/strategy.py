@@ -6,9 +6,17 @@ from strategies.react.prompts import (
     REACT_USER_TEMPLATE,
 )
 from strategies.base import Problem, Trace, TraceStep
-from llms.base import call_llm
-from config import SOLVER_MODEL
-from tools.calculator import calculate
+from strategies.utils import (
+    SOLVER_MODEL,
+    append_trace_step,
+    calculate,
+    call_llm,
+    log_final_answer,
+    log_run_header,
+    log_step,
+    normalize_numeric_answer,
+    trace_session,
+)
 
 MAX_STEPS = 8
 
@@ -51,6 +59,18 @@ class ReActStrategy:
 
     async def solve(self, problem: Problem) -> Trace:
         trace = Trace(strategy=self.name, problem_id=problem.id)
+        log_run_header(
+            strategy=self.name,
+            problem_id=problem.id,
+            question=problem.question,
+        )
+        async with trace_session(self.name, problem.id, problem.question) as trace_id:
+            trace.trace_id = trace_id
+            final_answer = await self._run(trace, problem)
+        trace.answer = log_final_answer(final_answer)
+        return trace
+
+    async def _run(self, trace: Trace, problem: Problem) -> str:
         system = REACT_SYSTEM_PROMPT.format(max_steps=MAX_STEPS)
         messages: list[dict[str, str]] = [
             {"role": "system", "content": system},
@@ -59,7 +79,7 @@ class ReActStrategy:
 
         final_answer = ""
         turn = ""
-        for step in range(MAX_STEPS):
+        for step in range(1, MAX_STEPS + 1):
             result = await call_llm(
                 messages,
                 model=SOLVER_MODEL,
@@ -70,18 +90,29 @@ class ReActStrategy:
             thought, kind, arg = _parse_turn(turn)
 
             if thought:
-                trace.steps.append(TraceStep(step_type="thought", content=thought))
-            trace.steps.append(TraceStep(step_type="action", content=turn, data={"kind": kind, "arg": arg}))
+                log_step(step, "thought", thought)
+                append_trace_step(trace, TraceStep(step_type="thought", content=thought))
+            if kind:
+                log_step(step, "action", turn)
+            append_trace_step(
+                trace, TraceStep(step_type="action", content=turn, data={"kind": kind, "arg": arg})
+            )
 
             if kind == "finish" and arg:
-                final_answer = arg.strip()
-                trace.steps.append(
-                    TraceStep(step_type="final_answer", content=final_answer, data={"step": step + 1})
+                final_answer = normalize_numeric_answer(arg)
+                append_trace_step(
+                    trace,
+                    TraceStep(
+                        step_type="final_answer",
+                        content=final_answer,
+                        data={"step": step},
+                    ),
                 )
                 break
 
             observation = _run_tool(kind, arg)
-            trace.steps.append(TraceStep(step_type="observation", content=observation))
+            log_step(step, "observation", observation)
+            append_trace_step(trace, TraceStep(step_type="observation", content=observation))
 
             messages.append({"role": "assistant", "content": turn})
             messages.append(
@@ -91,10 +122,11 @@ class ReActStrategy:
         if not final_answer:
             for s in reversed(trace.steps):
                 if s.step_type == "observation" and not s.content.startswith("Error"):
-                    final_answer = s.content.replace("Submitted final answer: ", "").strip()
+                    raw = s.content.replace("Submitted final answer: ", "").strip()
+                    final_answer = normalize_numeric_answer(raw)
                     break
             if not final_answer:
-                final_answer = turn
+                final_answer = normalize_numeric_answer(turn)
 
-        trace.answer = final_answer
-        return trace
+        return final_answer
+

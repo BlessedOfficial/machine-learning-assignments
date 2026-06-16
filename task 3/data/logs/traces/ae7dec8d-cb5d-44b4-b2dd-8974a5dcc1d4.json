@@ -1,0 +1,450 @@
+{
+  "correlation_id": "ae7dec8d-cb5d-44b4-b2dd-8974a5dcc1d4",
+  "started_at": "2026-06-02T16:20:31.706094+00:00",
+  "completed_at": "2026-06-02T16:21:16.114320+00:00",
+  "steps": [
+    {
+      "sequence": 1,
+      "sender": "orchestrator",
+      "recipient": "orchestrator",
+      "message_type": "user_request",
+      "message_id": "0de41f00-1680-4649-be5e-8674e91828b3",
+      "summary": "question=\"What is the biggestHow many PTO days do full-time employees ...\" role=employee",
+      "payload": {
+        "question": "What is the biggestHow many PTO days do full-time employees get per year, and what is the carryover limit?",
+        "user_role": "employee",
+        "top_k": null,
+        "min_score": null
+      }
+    },
+    {
+      "sequence": 2,
+      "sender": "orchestrator",
+      "recipient": "retriever",
+      "message_type": "retrieval_request",
+      "message_id": "ee37fe98-9647-46f0-b2bc-e431996b927a",
+      "summary": "query=\"What is the biggestHow many PTO days do full-time ...\"",
+      "payload": {
+        "query": "What is the biggestHow many PTO days do full-time employees get per year, and what is the carryover limit?",
+        "user_role": "employee",
+        "top_k": null,
+        "min_score": null
+      }
+    },
+    {
+      "sequence": 3,
+      "sender": "retriever",
+      "recipient": "orchestrator",
+      "message_type": "retrieval_result",
+      "message_id": "99cadb0b-5624-48ef-a815-f02cda90435d",
+      "summary": "chunks=5 status=ok",
+      "payload": {
+        "query": "What is the biggestHow many PTO days do full-time employees get per year, and what is the carryover limit?",
+        "chunks": [
+          {
+            "chunk_id": "pto-and-leave-policy#loc-001",
+            "text": "Full-time employees: **20 PTO days** per year; max carryover **5 days** (forfeit March 31).",
+            "score": 4.674469947814941,
+            "metadata": {
+              "proposition_index": 0,
+              "agentic_summary": "",
+              "section": "PTO and Leave \u2014 AI.Inc",
+              "source_file": "pto-and-leave-policy.md",
+              "proposition_count": 1,
+              "agentic_title": "",
+              "policy_id": "HR-PTO-2024-01",
+              "min_role": "employee",
+              "paragraph_index": 1,
+              "page": "2",
+              "url": "https://docs.ai.inc/internal/pto-and-leave-policy"
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "pto-and-leave-policy#loc-002",
+            "text": "Part-time (20\u201329 hrs/week): **12 PTO days**.",
+            "score": -0.5869183540344238,
+            "metadata": {
+              "paragraph_index": 2,
+              "agentic_summary": "",
+              "proposition_count": 1,
+              "min_role": "employee",
+              "policy_id": "HR-PTO-2024-01",
+              "page": "3",
+              "proposition_index": 0,
+              "section": "PTO and Leave \u2014 AI.Inc",
+              "url": "https://docs.ai.inc/internal/pto-and-leave-policy",
+              "agentic_title": "",
+              "source_file": "pto-and-leave-policy.md"
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "pto-and-leave-policy#loc-004",
+            "text": "Sick leave: **10 days** per year, separate from PTO.",
+            "score": -2.5797019004821777,
+            "metadata": {
+              "url": "https://docs.ai.inc/internal/pto-and-leave-policy",
+              "min_role": "employee",
+              "section": "PTO and Leave \u2014 AI.Inc",
+              "source_file": "pto-and-leave-policy.md",
+              "agentic_summary": "",
+              "policy_id": "HR-PTO-2024-01",
+              "proposition_index": 0,
+              "page": "5",
+              "proposition_count": 1,
+              "paragraph_index": 4,
+              "agentic_title": ""
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "office-hours-and-holidays#loc-002",
+            "text": "11 US paid holidays** per year (see People Ops calendar).",
+            "score": -7.393319606781006,
+            "metadata": {
+              "paragraph_index": 2,
+              "proposition_index": 0,
+              "section": "Office and Holidays \u2014 AI.Inc",
+              "policy_id": "FAC-001",
+              "proposition_count": 1,
+              "agentic_title": "",
+              "page": "3",
+              "min_role": "employee",
+              "agentic_summary": "",
+              "source_file": "office-hours-and-holidays.md",
+              "url": "https://docs.ai.inc/internal/office-hours-and-holidays"
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "pto-and-leave-policy#loc-000",
+            "text": "# PTO and Leave \u2014 AI.Inc\n**Policy ID:** HR-PTO-2024-01",
+            "score": -8.555597305297852,
+            "metadata": {
+              "source_file": "pto-and-leave-policy.md",
+              "policy_id": "HR-PTO-2024-01",
+              "section": "PTO and Leave \u2014 AI.Inc",
+              "page": "1",
+              "url": "https://docs.ai.inc/internal/pto-and-leave-policy",
+              "min_role": "employee",
+              "paragraph_index": 0,
+              "proposition_index": 0,
+              "agentic_title": "",
+              "agentic_summary": "",
+              "proposition_count": 1
+            },
+            "retrieval_sources": [
+              "bm25"
+            ]
+          }
+        ],
+        "chunk_count": 5,
+        "status": "ok"
+      }
+    },
+    {
+      "sequence": 4,
+      "sender": "orchestrator",
+      "recipient": "synthesizer",
+      "message_type": "synthesis_request",
+      "message_id": "9b2998ba-94a5-45b3-9e2d-8537dccf6691",
+      "summary": "round=1",
+      "payload": {
+        "question": "What is the biggestHow many PTO days do full-time employees get per year, and what is the carryover limit?",
+        "chunks": [
+          {
+            "chunk_id": "pto-and-leave-policy#loc-001",
+            "text": "Full-time employees: **20 PTO days** per year; max carryover **5 days** (forfeit March 31).",
+            "score": 4.674469947814941,
+            "metadata": {
+              "proposition_index": 0,
+              "agentic_summary": "",
+              "section": "PTO and Leave \u2014 AI.Inc",
+              "source_file": "pto-and-leave-policy.md",
+              "proposition_count": 1,
+              "agentic_title": "",
+              "policy_id": "HR-PTO-2024-01",
+              "min_role": "employee",
+              "paragraph_index": 1,
+              "page": "2",
+              "url": "https://docs.ai.inc/internal/pto-and-leave-policy"
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "pto-and-leave-policy#loc-002",
+            "text": "Part-time (20\u201329 hrs/week): **12 PTO days**.",
+            "score": -0.5869183540344238,
+            "metadata": {
+              "paragraph_index": 2,
+              "agentic_summary": "",
+              "proposition_count": 1,
+              "min_role": "employee",
+              "policy_id": "HR-PTO-2024-01",
+              "page": "3",
+              "proposition_index": 0,
+              "section": "PTO and Leave \u2014 AI.Inc",
+              "url": "https://docs.ai.inc/internal/pto-and-leave-policy",
+              "agentic_title": "",
+              "source_file": "pto-and-leave-policy.md"
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "pto-and-leave-policy#loc-004",
+            "text": "Sick leave: **10 days** per year, separate from PTO.",
+            "score": -2.5797019004821777,
+            "metadata": {
+              "url": "https://docs.ai.inc/internal/pto-and-leave-policy",
+              "min_role": "employee",
+              "section": "PTO and Leave \u2014 AI.Inc",
+              "source_file": "pto-and-leave-policy.md",
+              "agentic_summary": "",
+              "policy_id": "HR-PTO-2024-01",
+              "proposition_index": 0,
+              "page": "5",
+              "proposition_count": 1,
+              "paragraph_index": 4,
+              "agentic_title": ""
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "office-hours-and-holidays#loc-002",
+            "text": "11 US paid holidays** per year (see People Ops calendar).",
+            "score": -7.393319606781006,
+            "metadata": {
+              "paragraph_index": 2,
+              "proposition_index": 0,
+              "section": "Office and Holidays \u2014 AI.Inc",
+              "policy_id": "FAC-001",
+              "proposition_count": 1,
+              "agentic_title": "",
+              "page": "3",
+              "min_role": "employee",
+              "agentic_summary": "",
+              "source_file": "office-hours-and-holidays.md",
+              "url": "https://docs.ai.inc/internal/office-hours-and-holidays"
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "pto-and-leave-policy#loc-000",
+            "text": "# PTO and Leave \u2014 AI.Inc\n**Policy ID:** HR-PTO-2024-01",
+            "score": -8.555597305297852,
+            "metadata": {
+              "source_file": "pto-and-leave-policy.md",
+              "policy_id": "HR-PTO-2024-01",
+              "section": "PTO and Leave \u2014 AI.Inc",
+              "page": "1",
+              "url": "https://docs.ai.inc/internal/pto-and-leave-policy",
+              "min_role": "employee",
+              "paragraph_index": 0,
+              "proposition_index": 0,
+              "agentic_title": "",
+              "agentic_summary": "",
+              "proposition_count": 1
+            },
+            "retrieval_sources": [
+              "bm25"
+            ]
+          }
+        ],
+        "round_number": 1,
+        "critique": []
+      }
+    },
+    {
+      "sequence": 5,
+      "sender": "synthesizer",
+      "recipient": "orchestrator",
+      "message_type": "synthesis_result",
+      "message_id": "3dbfa08c-bc80-4dc3-9d4b-22dcd8af2e83",
+      "summary": "round=1 draft=\"Full-time employees receive **20 PTO days** per ye...\"",
+      "payload": {
+        "question": "What is the biggestHow many PTO days do full-time employees get per year, and what is the carryover limit?",
+        "draft": "Full-time employees receive **20 PTO days** per year [`pto-and-leave-policy#loc-001`], with a maximum carryover limit of **5 days** (`pto-and-leave-policy#loc-001`). \n\nSources: `pto-and-leave-policy#loc-001`",
+        "round_number": 1,
+        "model_used": "openrouter/free"
+      }
+    },
+    {
+      "sequence": 6,
+      "sender": "orchestrator",
+      "recipient": "safety_reviewer",
+      "message_type": "safety_review_request",
+      "message_id": "e146d39a-ed2d-48ab-93bd-8f0e4bf58d3b",
+      "summary": "round=1 draft_len=207",
+      "payload": {
+        "question": "What is the biggestHow many PTO days do full-time employees get per year, and what is the carryover limit?",
+        "draft": "Full-time employees receive **20 PTO days** per year [`pto-and-leave-policy#loc-001`], with a maximum carryover limit of **5 days** (`pto-and-leave-policy#loc-001`). \n\nSources: `pto-and-leave-policy#loc-001`",
+        "chunks": [
+          {
+            "chunk_id": "pto-and-leave-policy#loc-001",
+            "text": "Full-time employees: **20 PTO days** per year; max carryover **5 days** (forfeit March 31).",
+            "score": 4.674469947814941,
+            "metadata": {
+              "proposition_index": 0,
+              "agentic_summary": "",
+              "section": "PTO and Leave \u2014 AI.Inc",
+              "source_file": "pto-and-leave-policy.md",
+              "proposition_count": 1,
+              "agentic_title": "",
+              "policy_id": "HR-PTO-2024-01",
+              "min_role": "employee",
+              "paragraph_index": 1,
+              "page": "2",
+              "url": "https://docs.ai.inc/internal/pto-and-leave-policy"
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "pto-and-leave-policy#loc-002",
+            "text": "Part-time (20\u201329 hrs/week): **12 PTO days**.",
+            "score": -0.5869183540344238,
+            "metadata": {
+              "paragraph_index": 2,
+              "agentic_summary": "",
+              "proposition_count": 1,
+              "min_role": "employee",
+              "policy_id": "HR-PTO-2024-01",
+              "page": "3",
+              "proposition_index": 0,
+              "section": "PTO and Leave \u2014 AI.Inc",
+              "url": "https://docs.ai.inc/internal/pto-and-leave-policy",
+              "agentic_title": "",
+              "source_file": "pto-and-leave-policy.md"
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "pto-and-leave-policy#loc-004",
+            "text": "Sick leave: **10 days** per year, separate from PTO.",
+            "score": -2.5797019004821777,
+            "metadata": {
+              "url": "https://docs.ai.inc/internal/pto-and-leave-policy",
+              "min_role": "employee",
+              "section": "PTO and Leave \u2014 AI.Inc",
+              "source_file": "pto-and-leave-policy.md",
+              "agentic_summary": "",
+              "policy_id": "HR-PTO-2024-01",
+              "proposition_index": 0,
+              "page": "5",
+              "proposition_count": 1,
+              "paragraph_index": 4,
+              "agentic_title": ""
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "office-hours-and-holidays#loc-002",
+            "text": "11 US paid holidays** per year (see People Ops calendar).",
+            "score": -7.393319606781006,
+            "metadata": {
+              "paragraph_index": 2,
+              "proposition_index": 0,
+              "section": "Office and Holidays \u2014 AI.Inc",
+              "policy_id": "FAC-001",
+              "proposition_count": 1,
+              "agentic_title": "",
+              "page": "3",
+              "min_role": "employee",
+              "agentic_summary": "",
+              "source_file": "office-hours-and-holidays.md",
+              "url": "https://docs.ai.inc/internal/office-hours-and-holidays"
+            },
+            "retrieval_sources": [
+              "bm25",
+              "dense"
+            ]
+          },
+          {
+            "chunk_id": "pto-and-leave-policy#loc-000",
+            "text": "# PTO and Leave \u2014 AI.Inc\n**Policy ID:** HR-PTO-2024-01",
+            "score": -8.555597305297852,
+            "metadata": {
+              "source_file": "pto-and-leave-policy.md",
+              "policy_id": "HR-PTO-2024-01",
+              "section": "PTO and Leave \u2014 AI.Inc",
+              "page": "1",
+              "url": "https://docs.ai.inc/internal/pto-and-leave-policy",
+              "min_role": "employee",
+              "paragraph_index": 0,
+              "proposition_index": 0,
+              "agentic_title": "",
+              "agentic_summary": "",
+              "proposition_count": 1
+            },
+            "retrieval_sources": [
+              "bm25"
+            ]
+          }
+        ],
+        "round_number": 1
+      }
+    },
+    {
+      "sequence": 7,
+      "sender": "safety_reviewer",
+      "recipient": "orchestrator",
+      "message_type": "safety_verdict",
+      "message_id": "701c968f-0b9b-444a-847c-788c741b130a",
+      "summary": "decision=approve issues=[none]",
+      "payload": {
+        "decision": "approve",
+        "final_answer": "Full-time employees receive **20 PTO days** per year [`pto-and-leave-policy#loc-001`], with a maximum carryover limit of **5 days** (`pto-and-leave-policy#loc-001`).",
+        "critique": [],
+        "round_number": 1
+      }
+    },
+    {
+      "sequence": 8,
+      "sender": "orchestrator",
+      "recipient": "orchestrator",
+      "message_type": "workflow_complete",
+      "message_id": "601b59d6-3d4f-444e-838e-887ef72e650b",
+      "summary": "answer_len=165 regeneration_rounds=0",
+      "payload": {
+        "answer": "Full-time employees receive **20 PTO days** per year [`pto-and-leave-policy#loc-001`], with a maximum carryover limit of **5 days** (`pto-and-leave-policy#loc-001`).",
+        "message_count": 8,
+        "regeneration_rounds": 0,
+        "correlation_id": "ae7dec8d-cb5d-44b4-b2dd-8974a5dcc1d4"
+      }
+    }
+  ],
+  "feedback_loops": []
+}

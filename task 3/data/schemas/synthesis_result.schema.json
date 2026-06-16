@@ -1,0 +1,37 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "question": {
+      "title": "Question",
+      "type": "string"
+    },
+    "draft": {
+      "title": "Draft",
+      "type": "string"
+    },
+    "round_number": {
+      "minimum": 1,
+      "title": "Round Number",
+      "type": "integer"
+    },
+    "model_used": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Model Used"
+    }
+  },
+  "required": [
+    "question",
+    "draft",
+    "round_number"
+  ],
+  "title": "SynthesisResult",
+  "type": "object"
+}

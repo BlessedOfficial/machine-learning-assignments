@@ -1,0 +1,94 @@
+{
+  "$defs": {
+    "ChunkHit": {
+      "additionalProperties": false,
+      "properties": {
+        "chunk_id": {
+          "minLength": 1,
+          "title": "Chunk Id",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "score": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Score"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        },
+        "retrieval_sources": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Retrieval Sources"
+        }
+      },
+      "required": [
+        "chunk_id",
+        "text"
+      ],
+      "title": "ChunkHit",
+      "type": "object"
+    },
+    "RetrievalStatus": {
+      "enum": [
+        "ok",
+        "empty"
+      ],
+      "title": "RetrievalStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "query": {
+      "title": "Query",
+      "type": "string"
+    },
+    "chunks": {
+      "items": {
+        "$ref": "#/$defs/ChunkHit"
+      },
+      "title": "Chunks",
+      "type": "array"
+    },
+    "chunk_count": {
+      "minimum": 0,
+      "title": "Chunk Count",
+      "type": "integer"
+    },
+    "status": {
+      "$ref": "#/$defs/RetrievalStatus",
+      "default": "ok"
+    }
+  },
+  "required": [
+    "query",
+    "chunks",
+    "chunk_count"
+  ],
+  "title": "RetrievalResult",
+  "type": "object"
+}

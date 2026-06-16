@@ -1,0 +1,74 @@
+{
+  "$defs": {
+    "ReviewDecision": {
+      "enum": [
+        "approve",
+        "redact",
+        "regenerate"
+      ],
+      "title": "ReviewDecision",
+      "type": "string"
+    },
+    "SafetyIssue": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/SafetyIssueCode"
+        },
+        "detail": {
+          "minLength": 1,
+          "title": "Detail",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "detail"
+      ],
+      "title": "SafetyIssue",
+      "type": "object"
+    },
+    "SafetyIssueCode": {
+      "enum": [
+        "response_meta_leak",
+        "citation_discipline",
+        "pii_email",
+        "pii_phone",
+        "pii_ssn",
+        "pii_credit_card",
+        "grounding_failure"
+      ],
+      "title": "SafetyIssueCode",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "decision": {
+      "$ref": "#/$defs/ReviewDecision"
+    },
+    "final_answer": {
+      "title": "Final Answer",
+      "type": "string"
+    },
+    "critique": {
+      "items": {
+        "$ref": "#/$defs/SafetyIssue"
+      },
+      "title": "Critique",
+      "type": "array"
+    },
+    "round_number": {
+      "minimum": 1,
+      "title": "Round Number",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "decision",
+    "final_answer",
+    "round_number"
+  ],
+  "title": "SafetyVerdict",
+  "type": "object"
+}

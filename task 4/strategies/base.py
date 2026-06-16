@@ -22,6 +22,7 @@ class Trace:
     problem_id: str
     steps: list[TraceStep] = field(default_factory=list)
     answer: str = ""
+    trace_id: str = ""
 
 
 class Strategy(Protocol):

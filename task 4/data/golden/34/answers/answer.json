@@ -1,0 +1,6 @@
+{
+  "number": 34,
+  "id": "gsm8k-test-1214",
+  "ground_truth": "5",
+  "full_solution": "Jordan has 2 children, each requiring 5 diaper changes per day, for a total of 5*2=<<2*5=10>>10 diaper changes per day.\nJordan's wife changes half of the diapers, leaving Jordan to change the other half, for a total of 10/2=<<10/2=5>>5 diaper changes per day that Jordan is responsible for.\n#### 5"
+}

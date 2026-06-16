@@ -1,0 +1,6 @@
+{
+  "number": 7,
+  "id": "gsm8k-test-222",
+  "ground_truth": "140",
+  "full_solution": "First find the number of petunias Andy plants: 90 flowers - 40 = <<90-40=50>>50 flowers\nThen add the number of each kind of flower he plants to find the total number: 50 flowers + 90 flowers = <<50+90=140>>140 flowers\n#### 140"
+}

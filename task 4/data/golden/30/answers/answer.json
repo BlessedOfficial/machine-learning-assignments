@@ -1,0 +1,6 @@
+{
+  "number": 30,
+  "id": "gsm8k-test-1005",
+  "ground_truth": "1490",
+  "full_solution": "The number of female porcupines in the park is 3/5*50 = <<3/5*50=30>>30.\nIn a month, the 30 female porcupines give birth to 30*4 = <<30*4=120>>120 new babies.\nAfter a year, with 12 months, the total number of new porcupines in the park is 120*12 = <<120*12=1440>>1440\nThe total population of porcupines in the park after a year is 50+1440 = <<50+1440=1490>>1490\n#### 1490"
+}

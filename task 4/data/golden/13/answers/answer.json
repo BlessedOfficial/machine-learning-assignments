@@ -1,0 +1,6 @@
+{
+  "number": 13,
+  "id": "gsm8k-test-463",
+  "ground_truth": "18",
+  "full_solution": "The tip that Ashley wants to give amounts to $15 x 1/5 = $<<15*1/5=3>>3.\nHence, she will give a total of $15 + $3 = $<<15+3=18>>18 to the delivery man.\n#### 18"
+}

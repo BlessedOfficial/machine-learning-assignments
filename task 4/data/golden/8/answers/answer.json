@@ -1,0 +1,6 @@
+{
+  "number": 8,
+  "id": "gsm8k-test-237",
+  "ground_truth": "90",
+  "full_solution": "Johnny invested twenty and ten dollars for a total of 20+10=<<20+10=30>>30 dollars invested\nJohnny tripled this amount of money over the year, for a total of 30*=90 dollars\n#### 90"
+}

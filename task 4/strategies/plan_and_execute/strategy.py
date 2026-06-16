@@ -1,7 +1,5 @@
 import re
 
-from config import SOLVER_MODEL
-from llms.base import call_llm
 from strategies.base import Problem, Trace, TraceStep
 from strategies.plan_and_execute.prompts import (
     EXECUTOR_OBSERVATION_TEMPLATE,
@@ -12,7 +10,20 @@ from strategies.plan_and_execute.prompts import (
     SYNTHESIS_SYSTEM_PROMPT,
     SYNTHESIS_USER_TEMPLATE,
 )
-from tools.calculator import calculate
+from strategies.utils import (
+    SOLVER_MODEL,
+    append_trace_step,
+    calculate,
+    call_llm,
+    log_final_answer,
+    log_phase,
+    log_plan,
+    log_run_header,
+    log_step,
+    normalize_numeric_answer,
+    trace_session,
+)
+from strategies.utils.answer import extract_finish_value
 
 MAX_PLAN_STEPS = 8
 MAX_TOOL_ROUNDS_PER_STEP = 3
@@ -25,7 +36,6 @@ _EXEC_ACTION_RE = re.compile(
 _EXEC_THOUGHT_RE = re.compile(
     r"Thought:\s*(.+?)(?=\nAction:|\Z)", re.IGNORECASE | re.DOTALL
 )
-_FINISH_RE = re.compile(r"finish\[(.+?)\]", re.IGNORECASE)
 
 
 def _parse_plan(text: str) -> list[str]:
@@ -37,7 +47,6 @@ def _parse_plan(text: str) -> list[str]:
     if steps:
         return steps[:MAX_PLAN_STEPS]
 
-    # Fallback: non-empty lines after "Plan:"
     if "plan:" in text.lower():
         block = text.split(":", 1)[-1]
         for line in block.splitlines():
@@ -70,11 +79,6 @@ def _run_calculator(expression: str) -> str:
         return f"Error: {e}"
 
 
-def _extract_finish(text: str) -> str:
-    match = _FINISH_RE.search(text)
-    return match.group(1).strip() if match else ""
-
-
 class PlanAndExecuteStrategy:
     """Planner produces a step list upfront; executor runs each step with calculator access."""
 
@@ -82,8 +86,19 @@ class PlanAndExecuteStrategy:
 
     async def solve(self, problem: Problem) -> Trace:
         trace = Trace(strategy=self.name, problem_id=problem.id)
+        log_run_header(
+            strategy=self.name,
+            problem_id=problem.id,
+            question=problem.question,
+        )
+        async with trace_session(self.name, problem.id, problem.question) as trace_id:
+            trace.trace_id = trace_id
+            final_answer = await self._run(trace, problem)
+        trace.answer = log_final_answer(final_answer)
+        return trace
 
-        # --- Phase 1: Plan ---
+    async def _run(self, trace: Trace, problem: Problem) -> str:
+        log_phase("Planning")
         planner_messages = [
             {
                 "role": "system",
@@ -102,16 +117,18 @@ class PlanAndExecuteStrategy:
         )
         plan_text = plan_result.content
         plan_steps = _parse_plan(plan_text)
+        log_plan(plan_steps)
 
-        trace.steps.append(
+        append_trace_step(
+            trace,
             TraceStep(
                 step_type="plan",
                 content=plan_text,
                 data={"steps": plan_steps, "step_count": len(plan_steps)},
-            )
+            ),
         )
 
-        # --- Phase 2: Execute each plan step ---
+        log_phase("Execution")
         step_results: list[str] = []
         final_answer = ""
 
@@ -140,7 +157,9 @@ class PlanAndExecuteStrategy:
 
             step_outcome = ""
             turn = ""
+            round_num = 0
             for _ in range(MAX_TOOL_ROUNDS_PER_STEP + 1):
+                round_num += 1
                 exec_result = await call_llm(
                     messages,
                     model=SOLVER_MODEL,
@@ -149,54 +168,65 @@ class PlanAndExecuteStrategy:
                 )
                 turn = exec_result.content
                 thought, kind, arg = _parse_executor_turn(turn)
+                step_label = f"plan {idx}/{len(plan_steps)}"
 
                 if thought:
-                    trace.steps.append(
+                    log_step(round_num, f"{step_label} thought", thought)
+                    append_trace_step(
+                        trace,
                         TraceStep(
                             step_type="thought",
                             content=thought,
                             data={"plan_step": idx},
-                        )
+                        ),
                     )
-                trace.steps.append(
+                if kind:
+                    log_step(round_num, f"{step_label} action", turn)
+                append_trace_step(
+                    trace,
                     TraceStep(
                         step_type="action",
                         content=turn,
                         data={"plan_step": idx, "kind": kind, "arg": arg},
-                    )
+                    ),
                 )
 
                 if kind == "finish" and arg:
-                    final_answer = arg.strip()
+                    final_answer = normalize_numeric_answer(arg)
                     step_outcome = f"Final answer: {final_answer}"
-                    trace.steps.append(
+                    append_trace_step(
+                        trace,
                         TraceStep(
                             step_type="final_answer",
                             content=final_answer,
                             data={"plan_step": idx},
-                        )
+                        ),
                     )
                     break
 
                 if kind == "step_done" and arg:
                     step_outcome = arg.strip()
-                    trace.steps.append(
+                    log_step(round_num, f"{step_label} result", step_outcome)
+                    append_trace_step(
+                        trace,
                         TraceStep(
                             step_type="observation",
                             content=f"Step {idx} complete: {step_outcome}",
                             data={"plan_step": idx},
-                        )
+                        ),
                     )
                     break
 
                 if kind == "calculator" and arg:
                     observation = _run_calculator(arg)
-                    trace.steps.append(
+                    log_step(round_num, f"{step_label} observation", observation)
+                    append_trace_step(
+                        trace,
                         TraceStep(
                             step_type="observation",
                             content=observation,
                             data={"plan_step": idx, "tool": "calculator"},
-                        )
+                        ),
                     )
                     messages.append({"role": "assistant", "content": turn})
                     messages.append(
@@ -209,12 +239,15 @@ class PlanAndExecuteStrategy:
                     )
                     continue
 
-                trace.steps.append(
+                observation = "Error: Use calculator[expr], step_done[result], or finish[number]."
+                log_step(round_num, f"{step_label} observation", observation)
+                append_trace_step(
+                    trace,
                     TraceStep(
                         step_type="observation",
-                        content="Error: Use calculator[expr], step_done[result], or finish[number].",
+                        content=observation,
                         data={"plan_step": idx},
-                    )
+                    ),
                 )
                 break
 
@@ -225,8 +258,8 @@ class PlanAndExecuteStrategy:
                 step_outcome = turn.strip() or f"(no result recorded for step {idx})"
             step_results.append(step_outcome)
 
-        # --- Phase 3: Synthesize final number if not finished ---
         if not final_answer:
+            log_phase("Synthesis")
             execution_log = "\n".join(
                 f"Step {i}: {r}" for i, r in enumerate(step_results, start=1)
             )
@@ -248,17 +281,20 @@ class PlanAndExecuteStrategy:
                 role="solver",
             )
             synth_text = synth_result.content
-            final_answer = _extract_finish(synth_text) or synth_text.strip()
-            trace.steps.append(
+            log_step(1, "synthesis", synth_text)
+            raw = extract_finish_value(synth_text) or synth_text.strip()
+            final_answer = normalize_numeric_answer(raw)
+            append_trace_step(
+                trace,
                 TraceStep(
                     step_type="synthesis",
                     content=synth_text,
                     data={"extracted": final_answer},
-                )
+                ),
             )
-            trace.steps.append(
-                TraceStep(step_type="final_answer", content=final_answer)
+            append_trace_step(
+                trace, TraceStep(step_type="final_answer", content=final_answer)
             )
 
-        trace.answer = final_answer
-        return trace
+        return final_answer
+

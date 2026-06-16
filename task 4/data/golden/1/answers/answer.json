@@ -1,0 +1,6 @@
+{
+  "number": 1,
+  "id": "gsm8k-test-15",
+  "ground_truth": "125",
+  "full_solution": "If he purchases jewelry, he will make a profit of 2.5% which is $5000*(2.5/100) = $<<5000*(2.5/100)=125>>125\nIf he purchases electronic gadgets, he will make a profit of 1.2% which is $8000*(1.2/100) = $<<8000*(1.2/100)=96>>96\nIf he wants to maximize profit, since $125 > $96, he will choose to purchase jewelry, thereby making a profit of $<<125=125>>125\n#### 125"
+}

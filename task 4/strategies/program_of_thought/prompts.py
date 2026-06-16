@@ -61,7 +61,8 @@ Reasoning:
 No other markdown fences. No `finish[...]` syntax (that is for ReAct / Plan-and-Execute).
 
 ## Grading
-Stdout is compared with **exact match** to the reference answer.
+Stdout is compared with **exact match** to the reference answer (mathematical comparison).
+- Output a **bare number** on one line: `14`, `125`, `106.12` — no labels or units.
 - Integers when appropriate: `14` not `14.0`.
 - Money/profit: numeric amount only, no dollar sign.
 - If the problem asks "how many", output a whole number.

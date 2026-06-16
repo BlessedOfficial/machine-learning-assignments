@@ -1,0 +1,6 @@
+{
+  "number": 9,
+  "id": "gsm8k-test-238",
+  "ground_truth": "68",
+  "full_solution": "Joan is 20 + 5 = <<20+5=25>>25 years old.\nMary is 25 – 2 = <<25-2=23>>23 years old.\nTherefore, the sum of their ages is 20 + 25 + 23 = <<20+25+23=68>>68.\n#### 68"
+}

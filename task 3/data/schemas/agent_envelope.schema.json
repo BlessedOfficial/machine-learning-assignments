@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AgentEnvelope",
+  "description": "A2A envelope: sender, recipient, correlation_id, typed payload",
+  "type": "object",
+  "required": [
+    "message_id",
+    "correlation_id",
+    "timestamp",
+    "sender",
+    "recipient",
+    "message_type",
+    "payload"
+  ],
+  "properties": {
+    "message_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "correlation_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sender": {
+      "enum": [
+        "orchestrator",
+        "retriever",
+        "synthesizer",
+        "safety_reviewer"
+      ]
+    },
+    "recipient": {
+      "enum": [
+        "orchestrator",
+        "retriever",
+        "synthesizer",
+        "safety_reviewer"
+      ]
+    },
+    "message_type": {
+      "enum": [
+        "user_request",
+        "retrieval_request",
+        "retrieval_result",
+        "synthesis_request",
+        "synthesis_result",
+        "safety_review_request",
+        "safety_verdict",
+        "workflow_complete",
+        "workflow_error"
+      ]
+    },
+    "payload": {
+      "description": "Must validate against payload schema for message_type"
+    }
+  },
+  "payloadSchemas": {
+    "user_request": "user_request.schema.json",
+    "retrieval_request": "retrieval_request.schema.json",
+    "retrieval_result": "retrieval_result.schema.json",
+    "synthesis_request": "synthesis_request.schema.json",
+    "synthesis_result": "synthesis_result.schema.json",
+    "safety_review_request": "safety_review_request.schema.json",
+    "safety_verdict": "safety_verdict.schema.json",
+    "workflow_complete": "workflow_complete.schema.json",
+    "workflow_error": "workflow_error.schema.json"
+  }
+}

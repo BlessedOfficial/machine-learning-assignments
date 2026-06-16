@@ -26,8 +26,9 @@ Use this exact syntax in Action lines:
   Expressions may use +, -, *, /, //, %, **, and parentheses. No variables, no words.
 
 - `finish[ANSWER]` — Submit the final numeric answer when you are confident.
-  ANSWER must be a single number only (e.g. `finish[125]` or `finish[14]`).
-  No units, no dollars sign, no explanation inside the brackets.
+  ANSWER must be a **bare number only** (e.g. `finish[125]` or `finish[14]`).
+  No units, no dollars sign, no commas, no explanation inside the brackets.
+  This value is used for exact mathematical comparison against the reference.
 
 ## Rules
 - Prefer `calculator[...]` over mental math for anything beyond trivial single-digit ops.

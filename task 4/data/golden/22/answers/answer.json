@@ -1,0 +1,6 @@
+{
+  "number": 22,
+  "id": "gsm8k-test-672",
+  "ground_truth": "2",
+  "full_solution": "Christina had 30 - 12 - 8 = <<30-12-8=10>>10 neutral days in the month.\nAfter the first three 8-day periods, she had 30 - 8 * 3 = 30 - 24 = <<30-8*3=6>>6 days of moods left.\nOf those days, 12 - 8 = <<12-8=4>>4 days were good.\nAfter the next 3 days with 2 good days, Christina had 4 - 2 = <<4-2=2>>2 good days left.\n#### 2"
+}

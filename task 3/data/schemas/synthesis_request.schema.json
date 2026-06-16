@@ -1,0 +1,122 @@
+{
+  "$defs": {
+    "ChunkHit": {
+      "additionalProperties": false,
+      "properties": {
+        "chunk_id": {
+          "minLength": 1,
+          "title": "Chunk Id",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "score": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Score"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        },
+        "retrieval_sources": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Retrieval Sources"
+        }
+      },
+      "required": [
+        "chunk_id",
+        "text"
+      ],
+      "title": "ChunkHit",
+      "type": "object"
+    },
+    "SafetyIssue": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/SafetyIssueCode"
+        },
+        "detail": {
+          "minLength": 1,
+          "title": "Detail",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "detail"
+      ],
+      "title": "SafetyIssue",
+      "type": "object"
+    },
+    "SafetyIssueCode": {
+      "enum": [
+        "response_meta_leak",
+        "citation_discipline",
+        "pii_email",
+        "pii_phone",
+        "pii_ssn",
+        "pii_credit_card",
+        "grounding_failure"
+      ],
+      "title": "SafetyIssueCode",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "question": {
+      "minLength": 1,
+      "title": "Question",
+      "type": "string"
+    },
+    "chunks": {
+      "items": {
+        "$ref": "#/$defs/ChunkHit"
+      },
+      "title": "Chunks",
+      "type": "array"
+    },
+    "round_number": {
+      "default": 1,
+      "minimum": 1,
+      "title": "Round Number",
+      "type": "integer"
+    },
+    "critique": {
+      "items": {
+        "$ref": "#/$defs/SafetyIssue"
+      },
+      "title": "Critique",
+      "type": "array"
+    }
+  },
+  "required": [
+    "question",
+    "chunks"
+  ],
+  "title": "SynthesisRequest",
+  "type": "object"
+}

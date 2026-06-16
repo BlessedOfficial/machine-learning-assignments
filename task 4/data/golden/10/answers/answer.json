@@ -1,0 +1,6 @@
+{
+  "number": 10,
+  "id": "gsm8k-test-275",
+  "ground_truth": "138",
+  "full_solution": "The first scene has twice the number of lines as his solo song, so it has 2 * 54 = <<2*54=108>>108 lines.\nA third of them are Sean’s lines, so he has to memorize 108 / 3 = <<108/3=36>>36 lines.\nThe second scene has 54 + 6 = <<54+6=60>>60 lines.\nFour fifths of the second scene’s lines are Sean’s, so he has to memorize 4 * 60 / 5 = 4 * 12 = <<4*60/5=48>>48 lines.\nSean has to memorize his entire solo song, so he has to memorize 54 + 36 + 48 = <<54+36+48=138>>138 lines in all.\n#### 138"
+}
