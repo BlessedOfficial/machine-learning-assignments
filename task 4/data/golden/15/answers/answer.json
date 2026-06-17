@@ -1,0 +1,6 @@
+{
+  "number": 15,
+  "id": "gsm8k-test-480",
+  "ground_truth": "11",
+  "full_solution": "Jasper has 4/2= <<4/2=2>>2 tubes of blue paint\nJasper has 3*3=<<3*3=9>>9 tubes of yellow paint\nJasper has a total of 2+9 =<<2+9=11>>11 tubes of paint\n#### 11"
+}

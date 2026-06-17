@@ -1,0 +1,6 @@
+{
+  "number": 28,
+  "id": "gsm8k-test-921",
+  "ground_truth": "4",
+  "full_solution": "Josh can eat 2 x 2 = <<2*2=4>>4 slices a day.\nTogether, Abby and Josh can eat 2 + 4 = <<2+4=6>>6 slices a day.\nSo, a loaf of bread will last for 24/6 = <<24/6=4>>4 days.\n#### 4"
+}

@@ -99,6 +99,8 @@ All options live in `config.py` / `.env`. Common knobs:
 | `RETRIEVAL_TOP_K` | `5` | Chunks to LLM |
 | `ENABLE_RBAC` | `true` | Role-based filtering |
 | `GROUNDING_MODE` | `strip` | `strip` \| `flag` \| `reject` |
+| `ENABLE_LLM_SAFETY_REVIEW` | `true` | Hybrid LLM + rule safety review on drafts |
+| `SAFETY_REVIEWER_MODEL` | `meta-llama/llama-3.2-3b-instruct:free` | OpenRouter model (must differ from synthesizer) |
 | `DEMO_MOCK_SYNTHESIS` | — | Set `true` for demo without LLM |
 
 ---

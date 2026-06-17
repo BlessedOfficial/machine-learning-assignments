@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-06-17",
+  "label": "pairwise-20-no-judge",
+  "run": {
+    "kind": "pairwise",
+    "limit": 20,
+    "comparable_count": 20,
+    "use_llm_judge": false,
+    "rel_tol": 0.01,
+    "abs_tol": 1e-09
+  },
+  "declared_winner": null,
+  "strategies": {
+    "react": {
+      "correct": 20,
+      "total": 20,
+      "rate": 1.0,
+      "ci_low": 0.83887,
+      "ci_high": 1.0,
+      "ci_method": "wilson"
+    },
+    "plan_and_execute": {
+      "correct": 18,
+      "total": 20,
+      "rate": 0.9,
+      "ci_low": 0.698962,
+      "ci_high": 0.972134,
+      "ci_method": "wilson"
+    },
+    "program_of_thought": {
+      "correct": 20,
+      "total": 20,
+      "rate": 1.0,
+      "ci_low": 0.83887,
+      "ci_high": 1.0,
+      "ci_method": "wilson"
+    }
+  },
+  "win_matrix": {
+    "react": {
+      "react": 0,
+      "plan_and_execute": 2,
+      "program_of_thought": 0
+    },
+    "plan_and_execute": {
+      "react": 0,
+      "plan_and_execute": 0,
+      "program_of_thought": 0
+    },
+    "program_of_thought": {
+      "react": 0,
+      "plan_and_execute": 2,
+      "program_of_thought": 0
+    }
+  },
+  "per_problem": [
+    {
+      "number": 1,
+      "problem_id": "gsm8k-test-15",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 2,
+      "problem_id": "gsm8k-test-55",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 3,
+      "problem_id": "gsm8k-test-57",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "miss",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 4,
+      "problem_id": "gsm8k-test-66",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 5,
+      "problem_id": "gsm8k-test-176",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 6,
+      "problem_id": "gsm8k-test-187",
+      "outcomes": {
+        "react": "tolerance",
+        "plan_and_execute": "tolerance",
+        "program_of_thought": "tolerance"
+      }
+    },
+    {
+      "number": 7,
+      "problem_id": "gsm8k-test-222",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 8,
+      "problem_id": "gsm8k-test-237",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 9,
+      "problem_id": "gsm8k-test-238",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 10,
+      "problem_id": "gsm8k-test-275",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 11,
+      "problem_id": "gsm8k-test-289",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 12,
+      "problem_id": "gsm8k-test-400",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 13,
+      "problem_id": "gsm8k-test-463",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 14,
+      "problem_id": "gsm8k-test-479",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 15,
+      "problem_id": "gsm8k-test-480",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 16,
+      "problem_id": "gsm8k-test-562",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 17,
+      "problem_id": "gsm8k-test-588",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 18,
+      "problem_id": "gsm8k-test-599",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 19,
+      "problem_id": "gsm8k-test-608",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "miss",
+        "program_of_thought": "exact"
+      }
+    },
+    {
+      "number": 20,
+      "problem_id": "gsm8k-test-616",
+      "outcomes": {
+        "react": "exact",
+        "plan_and_execute": "exact",
+        "program_of_thought": "exact"
+      }
+    }
+  ]
+}

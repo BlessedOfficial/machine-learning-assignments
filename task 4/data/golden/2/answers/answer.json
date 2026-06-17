@@ -1,0 +1,6 @@
+{
+  "number": 2,
+  "id": "gsm8k-test-55",
+  "ground_truth": "14",
+  "full_solution": "Jean has 30 - 2 = <<30-2=28>>28 lollipops\nJean can fill up 28 / 2 = <<28/2=14>>14 bags with lollipops\n#### 14"
+}

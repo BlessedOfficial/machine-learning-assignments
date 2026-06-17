@@ -1,0 +1,6 @@
+{
+  "number": 3,
+  "id": "gsm8k-test-57",
+  "ground_truth": "83",
+  "full_solution": "The boxes can weigh up to 5000 pounds - 3755 pounds = <<5000-3755=1245>>1245 pounds in total.\nThere can be 1245 / 15 = <<1245/15=83>>83 boxes loaded onto the truck without exceeding the bridge's weight limit.\n#### 83"
+}

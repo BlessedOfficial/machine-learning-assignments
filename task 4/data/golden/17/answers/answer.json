@@ -1,0 +1,6 @@
+{
+  "number": 17,
+  "id": "gsm8k-test-588",
+  "ground_truth": "52",
+  "full_solution": "Jared types at 52 WPM and increases it by 5 WPM, 52 + 5 = <<52+5=57>>57 WPM.\nHis average over all his measured words-per-minute is 47 + 52 + 57 = <<47+52+57=156>>156.\nHis total is 156 / 3 typing speeds = <<156/3=52>>52 WPM as Jared's average typing speed.\n#### 52"
+}
