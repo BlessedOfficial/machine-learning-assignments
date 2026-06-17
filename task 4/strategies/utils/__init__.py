@@ -29,7 +29,7 @@ from strategies.utils.golden import (
     problem_dir,
     question_path,
 )
-from strategies.utils.llm import LLMResult, call_llm
+from strategies.utils.llm import LLMResult, call_llm, get_solver_model, solver_model_override
 from strategies.utils.tools import calculate, extract_python_code, run_python_code
 from strategies.utils.trace import append_trace_step, trace_session
 
@@ -45,7 +45,7 @@ __all__ = [
     "call_llm",
     "calculate",
     "extract_python_code",
-    "golden_root",
+    "get_solver_model",
     "list_problem_numbers",
     "load_all_answers",
     "load_all_questions",
@@ -64,6 +64,6 @@ __all__ = [
     "normalize_numeric_answer",
     "problem_dir",
     "question_path",
-    "run_python_code",
+    "solver_model_override",
     "trace_session",
 ]

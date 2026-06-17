@@ -1,7 +1,9 @@
 import asyncio
 import time
+from contextlib import contextmanager
+from contextvars import ContextVar
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Iterator
 
 from openrouter import OpenRouter
 
@@ -11,12 +13,34 @@ from strategies.utils.config import (
     LLM_REQUEST_TIMEOUT_SEC,
     LLM_RETRY_BASE_SEC,
     OPENROUTER_API_KEY,
+    SOLVER_MODEL,
 )
 
 if not OPENROUTER_API_KEY:
     raise ValueError("API key not found. Set OPENROUTER_API_KEY in .env")
 
 _client = OpenRouter(api_key=OPENROUTER_API_KEY)
+_solver_model_override: ContextVar[str | None] = ContextVar(
+    "solver_model_override", default=None
+)
+
+
+def get_solver_model() -> str:
+    override = _solver_model_override.get()
+    return override if override else SOLVER_MODEL
+
+
+@contextmanager
+def solver_model_override(model: str | None) -> Iterator[None]:
+    """Temporarily route strategy LLM calls through a different model."""
+    if model is None:
+        yield
+        return
+    token = _solver_model_override.set(model)
+    try:
+        yield
+    finally:
+        _solver_model_override.reset(token)
 
 
 @dataclass
@@ -55,6 +79,23 @@ def is_rate_limit_error(exc: Exception) -> bool:
         or "quota" in msg
         or "capacity" in msg
         or "overloaded" in msg
+    )
+
+
+def is_quota_exhausted_error(exc: Exception) -> bool:
+    """True when further LLM calls are unlikely to succeed (quota/credits/tokens)."""
+    msg = str(exc).lower()
+    return is_rate_limit_error(exc) or any(
+        token in msg
+        for token in (
+            "free-models-per-day",
+            "insufficient",
+            "credit",
+            "exhausted",
+            "billing",
+            "payment",
+            "spend limit",
+        )
     )
 
 

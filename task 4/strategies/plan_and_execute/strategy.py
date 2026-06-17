@@ -11,7 +11,7 @@ from strategies.plan_and_execute.prompts import (
     SYNTHESIS_USER_TEMPLATE,
 )
 from strategies.utils import (
-    SOLVER_MODEL,
+    get_solver_model,
     append_trace_step,
     calculate,
     call_llm,
@@ -111,7 +111,7 @@ class PlanAndExecuteStrategy:
         ]
         plan_result = await call_llm(
             planner_messages,
-            model=SOLVER_MODEL,
+            model=get_solver_model(),
             temperature=0.2,
             role="solver",
         )
@@ -162,7 +162,7 @@ class PlanAndExecuteStrategy:
                 round_num += 1
                 exec_result = await call_llm(
                     messages,
-                    model=SOLVER_MODEL,
+                    model=get_solver_model(),
                     temperature=0.2,
                     role="solver",
                 )
@@ -276,7 +276,7 @@ class PlanAndExecuteStrategy:
             ]
             synth_result = await call_llm(
                 synth_messages,
-                model=SOLVER_MODEL,
+                model=get_solver_model(),
                 temperature=0.0,
                 role="solver",
             )
@@ -297,4 +297,4 @@ class PlanAndExecuteStrategy:
             )
 
         return final_answer
-
+

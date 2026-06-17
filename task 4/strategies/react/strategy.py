@@ -7,10 +7,10 @@ from strategies.react.prompts import (
 )
 from strategies.base import Problem, Trace, TraceStep
 from strategies.utils import (
-    SOLVER_MODEL,
     append_trace_step,
     calculate,
     call_llm,
+    get_solver_model,
     log_final_answer,
     log_run_header,
     log_step,
@@ -82,7 +82,7 @@ class ReActStrategy:
         for step in range(1, MAX_STEPS + 1):
             result = await call_llm(
                 messages,
-                model=SOLVER_MODEL,
+                model=get_solver_model(),
                 temperature=0.2,
                 role="solver",
             )
@@ -129,4 +129,4 @@ class ReActStrategy:
                 final_answer = normalize_numeric_answer(turn)
 
         return final_answer
-
+

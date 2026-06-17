@@ -20,7 +20,7 @@ from strategies.program_of_thought.prompts import (
 
 from strategies.utils import (
 
-    SOLVER_MODEL,
+    get_solver_model,
 
     append_trace_step,
 
@@ -155,7 +155,7 @@ class ProgramOfThoughtStrategy:
 
                 messages,
 
-                model=SOLVER_MODEL,
+                model=get_solver_model(),
 
                 temperature=0.2 if attempt == 1 else 0.1,
 
