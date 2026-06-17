@@ -64,9 +64,14 @@ All work is reviewed, understood, and adapted as part of my learning process.
 
 ## Progress Tracker
 
-| Task              | Topic | Status      |
-| ----------------- | ----- | ----------- |
-| [Task 1](./task1) | ⏳    | In Progress |
+| Task | Topic | Status | README |
+| ---- | ----- | ------ | ------ |
+| [Task 1](./task1) | API routing & domain handlers | In progress | [task 1/README.md](./task1/README.md) |
+| [Task 2](./task%202) | Routed research + Reflexion (Best-of-N, fan-in, critic loop) | Complete | [task 2/README.md](./task%202/README.md) |
+| [Task 3](./task%203) | Safety, RAG & multi-agent communication (AI.Inc assistant) | Complete | [task 3/README.md](./task%203/README.md) |
+| [Task 4](./task%204) | Evaluation & advanced reasoning (Agentic Reasoning Lab) | Not started | [task 4/README.md](./task%204/README.md) |
+
+Official course specs: [Task 2](https://github.com/BeniaDev/agents_course_tsu/blob/main/task2.md) · [Task 3](https://github.com/BeniaDev/agents_course_tsu/blob/main/task3.md) · [Task 4](https://github.com/BeniaDev/agents_course_tsu/blob/main/task4.md)
 
 ---
 

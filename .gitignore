@@ -1,2 +1,6 @@
 *.env
-_pycache__/
+__pycache__/
+.venv/
+.vs/
+task 3/data/faiss_index/
+task 3/data/chroma/

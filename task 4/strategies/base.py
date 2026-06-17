@@ -11,7 +11,7 @@ class Problem:
 
 @dataclass
 class TraceStep:
-    step_type: str  # thought, action, observation, final_answer
+    step_type: str  # e.g. "thought", "action", "observation", "plan", "execute"
     content: str
     data: dict[str, Any] = field(default_factory=dict)
 
@@ -22,7 +22,6 @@ class Trace:
     problem_id: str
     steps: list[TraceStep] = field(default_factory=list)
     answer: str = ""
-    trace_id: str = ""
 
 
 class Strategy(Protocol):

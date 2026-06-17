@@ -48,7 +48,7 @@ Use `.\.venv\Scripts\python.exe` on Windows if `python` is not on PATH.
 1. **Input guards** — injection, out-of-scope, PII → `PASS` / `REDACT` / `REJECT`
 2. **Retrieve** — Chroma (dense) + BM25 (sparse) → RRF → cross-encoder rerank → top 5 chunks
 3. **Agents** — Orchestrator delegates to Retriever, Synthesizer, Safety Reviewer via typed `AgentEnvelope` messages (`agents/protocol.py`)
-4. **Output guards** — deterministic rules (citations, grounding, PII) plus optional **LLM Safety Reviewer** (`ENABLE_LLM_SAFETY_REVIEW=true`); can **regenerate** (max `MAX_SYNTHESIS_ROUNDS=2`)
+4. **Output guards** — citations, grounding, PII redaction; Safety Reviewer can **regenerate** (max `MAX_SYNTHESIS_ROUNDS=2`)
 5. **RBAC** — `intern` / `employee` / `manager` / `hr` filter chunks by `min_role`
 
 Answers must cite full chunk IDs, e.g. `` [`pto-and-leave-policy#loc-001`] ``, or state missing info explicitly.
