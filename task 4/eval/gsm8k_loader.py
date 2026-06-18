@@ -1,14 +1,18 @@
 import json
 import random
+import urllib.request
 from pathlib import Path
-
-from datasets import load_dataset
 
 from strategies.base import Problem
 
 GSM8K_DATASET = "openai/gsm8k"
 GSM8K_CONFIG = "main"
 GSM8K_TEST_SPLIT = "test"
+_GSM8K_TEST_URL = (
+    "https://raw.githubusercontent.com/openai/grade-school-math/"
+    "master/grade_school_math/data/test.jsonl"
+)
+_CACHE_DIR = Path(__file__).resolve().parents[1] / "data" / "cache"
 
 
 def parse_gsm8k_answer(raw: str) -> str:
@@ -42,8 +46,38 @@ def record_to_problem(record: dict) -> Problem:
     )
 
 
+def _load_test_jsonl_cache() -> list[dict[str, str]]:
+    _CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    cache_path = _CACHE_DIR / "gsm8k_test.jsonl"
+    if not cache_path.exists():
+        with urllib.request.urlopen(_GSM8K_TEST_URL, timeout=120) as response:
+            cache_path.write_bytes(response.read())
+    rows: list[dict[str, str]] = []
+    for line in cache_path.read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            rows.append(json.loads(line))
+    return rows
+
+
+def load_gsm8k_rows(split: str = GSM8K_TEST_SPLIT, config: str = GSM8K_CONFIG) -> list[dict]:
+    if split != GSM8K_TEST_SPLIT:
+        raise ValueError(f"Only test split is supported via JSONL cache, got {split!r}")
+    try:
+        from datasets import load_dataset
+
+        ds = load_dataset(GSM8K_DATASET, config, split=split)
+        return [{"question": row["question"], "answer": row["answer"]} for row in ds]
+    except ImportError:
+        return _load_test_jsonl_cache()
+
+
 def load_gsm8k_split(split: str = GSM8K_TEST_SPLIT, config: str = GSM8K_CONFIG):
-    return load_dataset(GSM8K_DATASET, config, split=split)
+    try:
+        from datasets import load_dataset
+
+        return load_dataset(GSM8K_DATASET, config, split=split)
+    except ImportError:
+        return load_gsm8k_rows(split=split, config=config)
 
 
 def load_gsm8k_subset(
@@ -53,7 +87,7 @@ def load_gsm8k_subset(
     split: str = GSM8K_TEST_SPLIT,
     config: str = GSM8K_CONFIG,
 ) -> list[Problem]:
-    ds = load_gsm8k_split(split=split, config=config)
+    ds = load_gsm8k_rows(split=split, config=config)
     indices = list(range(len(ds)))
     rng = random.Random(seed)
     rng.shuffle(indices)
@@ -75,7 +109,7 @@ def export_golden_jsonl(
     split: str = GSM8K_TEST_SPLIT,
     config: str = GSM8K_CONFIG,
 ) -> list[dict]:
-    ds = load_gsm8k_split(split=split, config=config)
+    ds = load_gsm8k_rows(split=split, config=config)
     indices = list(range(len(ds)))
     rng = random.Random(seed)
     rng.shuffle(indices)

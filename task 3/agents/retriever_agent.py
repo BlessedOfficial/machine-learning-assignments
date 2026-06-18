@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from agents.base import BaseAgent
+from agents.pipeline_console import PipelineConsole
 from agents.protocol import (
     AgentEnvelope,
     AgentRole,
@@ -23,6 +24,7 @@ if TYPE_CHECKING:
 class RetrieverAgent(BaseAgent):
     role = AgentRole.RETRIEVER
     pipeline_log: PipelineRunLog | None = None
+    console: PipelineConsole | None = None
 
     async def _handle(self, envelope: AgentEnvelope) -> AgentEnvelope:
         if envelope.message_type != MessageType.RETRIEVAL_REQUEST:
@@ -40,6 +42,16 @@ class RetrieverAgent(BaseAgent):
 
         filtered = filter_hits_by_role(raw_hits, task.user_role)
         chunks = [ChunkHit.from_retriever_dict(hit) for hit in filtered]
+
+        top_id = chunks[0].chunk_id if chunks else "(none)"
+        if self.console:
+            self.console.header("Retriever", "Hybrid retrieval + RBAC")
+            self.console.step(
+                "Retriever",
+                "dense + BM25 + RRF + rerank",
+                result=f"{len(chunks)} chunks",
+                detail=f"top: {top_id}; rbac filtered {len(raw_hits)} -> {len(filtered)}",
+            )
 
         result = RetrievalResult(
             query=task.query,

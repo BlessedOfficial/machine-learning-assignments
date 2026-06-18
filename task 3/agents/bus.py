@@ -27,6 +27,9 @@ class MessageBroker:
         self._agents[role] = agent
         agent.bind_broker(self)
 
+    def get_agent(self, role: AgentRole) -> BaseAgent | None:
+        return self._agents.get(role)
+
     def start_trace(self, correlation_id: str) -> RequestTrace:
         self.trace = RequestTrace(correlation_id=correlation_id)
         return self.trace

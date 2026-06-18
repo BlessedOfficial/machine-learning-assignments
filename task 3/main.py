@@ -27,7 +27,10 @@ async def main():
     print(answer)
 
     if trace_path:
-        print(f"\nAgent trace:   {trace_path}")
+        txt_path = trace_path.with_suffix(".trace.txt")
+        print(f"\nAgent trace JSON: {trace_path}")
+        if txt_path.is_file():
+            print(f"Agent trace TXT:  {txt_path}")
     print(f"Pipeline log:  {PIPELINE_LOG_DIR}/{pipeline_log.correlation_id}.pipeline.log.json")
 
 

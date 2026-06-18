@@ -14,5 +14,11 @@ eval-diff:
 write-baseline:
 	$(PYTHON) -m eval --diff-baseline-log --write-baseline
 
+extend-golden:
+	$(PYTHON) scripts/extend_golden_set.py -n 15 --seed 99
+
+eval-extra:
+	$(PYTHON) -m eval --pairwise --offset 35 --pairwise-limit 15 --no-judge-fallback
+
 replay:
 	$(PYTHON) -m Observability.replay $(TRACE_ID) $(REPLAY_ARGS)

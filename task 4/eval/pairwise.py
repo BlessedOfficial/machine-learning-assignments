@@ -28,6 +28,7 @@ def _is_row_win(row: EvalRow) -> bool:
 def run_pairwise(
     *,
     limit: int = 4,
+    offset: int = 0,
     rel_tol: float = 0.01,
     abs_tol: float = 1e-9,
     use_llm_judge: bool = True,
@@ -44,6 +45,7 @@ def run_pairwise(
             rel_tol=rel_tol,
             abs_tol=abs_tol,
             limit=limit,
+            offset=offset,
             use_llm_judge=use_llm_judge,
             stop_on_quota=stop_on_quota,
         )

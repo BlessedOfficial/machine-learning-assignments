@@ -1,4 +1,4 @@
-"""Load golden GSM8K questions and answers from per-problem folders (1–35)."""
+"""Load golden GSM8K questions and answers from per-problem folders."""
 
 from __future__ import annotations
 
@@ -69,7 +69,7 @@ def load_answer_by_id(problem_id: str) -> dict | None:
 
 
 def load_question(ref: str | int) -> dict | None:
-    """Load question by folder number (1–35) or problem id (gsm8k-test-*)."""
+    """Load question by folder number or problem id (gsm8k-test-*)."""
     if isinstance(ref, int) or (isinstance(ref, str) and ref.isdigit()):
         number = int(ref)
         if question_path(number).exists():
@@ -79,7 +79,7 @@ def load_question(ref: str | int) -> dict | None:
 
 
 def load_answer(ref: str | int) -> dict | None:
-    """Load answer by folder number (1–35) or problem id (gsm8k-test-*)."""
+    """Load answer by folder number or problem id (gsm8k-test-*)."""
     if isinstance(ref, int) or (isinstance(ref, str) and ref.isdigit()):
         number = int(ref)
         if answer_path(number).exists():

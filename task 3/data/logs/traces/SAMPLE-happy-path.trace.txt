@@ -1,0 +1,19 @@
+Request trace (correlation_id=cc5e5b7a-2564-4abc-a3df-fcd639f8987a)
+Started: 2026-06-18T10:57:08.643848+00:00
+
+Full message-passing sequence (in order):
+
+  [Preflight - not on agent bus]
+  1. guardrail | input_guard (rules + optional LLM) | PASS
+
+  [Agent messages]
+  2. orchestrator -> orchestrator [user_request] question="How many PTO days do full-time employees receive per year?..." role=employee
+  3. orchestrator -> retriever [retrieval_request] query="How many PTO days do full-time employees receive p..."
+  4. retriever -> orchestrator [retrieval_result] chunks=5 status=ok
+  5. orchestrator -> synthesizer [synthesis_request] round=1
+  6. synthesizer -> orchestrator [synthesis_result] round=1 draft="Based on the retrieved policy excerpts, Full-time ..."
+  7. orchestrator -> safety_reviewer [safety_review_request] round=1 draft_len=164
+  8. safety_reviewer -> orchestrator [safety_verdict] decision=approve issues=[none]
+  9. orchestrator -> orchestrator [workflow_complete] answer_len=164 regeneration_rounds=0
+
+Completed: 2026-06-18T10:57:23.981848+00:00
