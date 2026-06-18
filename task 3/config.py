@@ -1,4 +1,4 @@
-import os
+﻿import os
 
 from dotenv import load_dotenv
 
@@ -10,6 +10,12 @@ SYNTHESIZER_MODEL = os.getenv("SYNTHESIZER_MODEL", "openrouter/free")
 SAFETY_REVIEWER_MODEL = os.getenv(
     "SAFETY_REVIEWER_MODEL", "meta-llama/llama-3.2-3b-instruct:free"
 )
+ENABLE_LLM_SAFETY_REVIEW = os.getenv(
+    "ENABLE_LLM_SAFETY_REVIEW", "true"
+).lower() in ("1", "true", "yes")
+ENABLE_LLM_INPUT_REVIEW = os.getenv(
+    "ENABLE_LLM_INPUT_REVIEW", "true"
+).lower() in ("1", "true", "yes")
 
 EMBEDDING_MODEL = os.getenv(
     "EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2"

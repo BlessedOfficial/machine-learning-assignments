@@ -6,6 +6,7 @@ import os
 
 from config import SYNTHESIZER_MODEL
 from agents.base import BaseAgent
+from agents.pipeline_console import PipelineConsole
 from agents.protocol import (
     AgentEnvelope,
     AgentRole,
@@ -46,6 +47,7 @@ def _mock_draft(question: str, chunks) -> str:
 
 class SynthesizerAgent(BaseAgent):
     role = AgentRole.SYNTHESIZER
+    console: PipelineConsole | None = None
 
     async def _handle(self, envelope: AgentEnvelope) -> AgentEnvelope:
         if envelope.message_type != MessageType.SYNTHESIS_REQUEST:
@@ -67,8 +69,10 @@ class SynthesizerAgent(BaseAgent):
                 + "\n"
             )
 
-        if os.getenv("DEMO_MOCK_SYNTHESIS", "").lower() in ("1", "true", "yes"):
+        mock_mode = os.getenv("DEMO_MOCK_SYNTHESIS", "").lower() in ("1", "true", "yes")
+        if mock_mode:
             draft = _mock_draft(task.question, task.chunks)
+            mode_label = "mock"
         else:
             messages = [
                 {"role": "system", "content": SYSTEM_PROMPT},
@@ -76,6 +80,16 @@ class SynthesizerAgent(BaseAgent):
             ]
             response = await call_synthesizer(messages, temperature=0.3)
             draft = _to_text(response)
+            mode_label = SYNTHESIZER_MODEL
+
+        if self.console:
+            self.console.header("Synthesizer", f"Draft synthesis (round {task.round_number})")
+            self.console.step(
+                "Synthesizer",
+                "generate draft",
+                result=f"{len(draft)} chars",
+                detail=f"mode={mode_label}",
+            )
 
         result = SynthesisResult(
             question=task.question,

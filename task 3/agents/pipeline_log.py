@@ -26,6 +26,8 @@ class InputGuardLog:
     decision: str
     rule: str | None
     pii_flags: list[str] = field(default_factory=list)
+    llm_reviewed: bool = False
+    llm_decision: str | None = None
 
 
 @dataclass
@@ -53,6 +55,8 @@ class PipelineRunLog:
             decision=input_guard_decision(result),
             rule=result.rule_triggered,
             pii_flags=list(result.pii_detected),
+            llm_reviewed=result.llm_reviewed,
+            llm_decision=result.llm_decision,
         )
 
     def record_retrieval(self, diagnostics: RetrievalDiagnostics) -> None:
@@ -118,6 +122,8 @@ class PipelineRunLog:
             lines.append(f"  rule     : {self.input_guard.rule or '(none)'}")
             if self.input_guard.pii_flags:
                 lines.append(f"  pii      : {', '.join(self.input_guard.pii_flags)}")
+            if self.input_guard.llm_reviewed:
+                lines.append(f"  llm      : {self.input_guard.llm_decision or '(none)'}")
         else:
             lines.append("  (not recorded)")
 

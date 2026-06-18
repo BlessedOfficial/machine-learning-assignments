@@ -7,6 +7,7 @@ from pathlib import Path
 from config import MAX_SYNTHESIS_ROUNDS, SHOW_PIPELINE_LOG
 from agents.base import BaseAgent
 from agents.bus import MessageBroker
+from agents.pipeline_console import PipelineConsole, set_pipeline_console
 from agents.pipeline_log import PipelineRunLog
 from agents.protocol import (
     AgentEnvelope,
@@ -30,7 +31,7 @@ from agents.synthesizer_agent import SynthesizerAgent
 from agents.trace import RequestTrace
 from workflow.guardrails import apply_response_guardrail
 from workflow.incident_log import log_guardrail_incident
-from workflow.input_guardrails import guard_user_input
+from workflow.input_guardrails import guard_user_input_hybrid, input_guard_decision
 from workflow.prompts import OUT_OF_SCOPE_REPLY
 
 
@@ -42,6 +43,7 @@ class OrchestratorAgent(BaseAgent):
         self._broker = broker or self._build_default_broker()
         self._max_rounds = MAX_SYNTHESIS_ROUNDS
         self.pipeline_log: PipelineRunLog | None = None
+        self.console = PipelineConsole(enabled=SHOW_PIPELINE_LOG)
 
     @staticmethod
     def _build_default_broker() -> MessageBroker:
@@ -63,6 +65,8 @@ class OrchestratorAgent(BaseAgent):
         *,
         run_label: str = "live",
     ) -> tuple[str, RequestTrace, Path | None, PipelineRunLog]:
+        set_pipeline_console(self.console)
+
         correlation_id = AgentEnvelope.create(
             sender=AgentRole.ORCHESTRATOR,
             recipient=AgentRole.ORCHESTRATOR,
@@ -78,6 +82,23 @@ class OrchestratorAgent(BaseAgent):
         retriever = getattr(self._broker, "_retriever_agent", None)
         if isinstance(retriever, RetrieverAgent):
             retriever.pipeline_log = self.pipeline_log
+            retriever.console = self.console
+
+        synthesizer = self._broker.get_agent(AgentRole.SYNTHESIZER)
+        if isinstance(synthesizer, SynthesizerAgent):
+            synthesizer.console = self.console
+
+        safety = self._broker.get_agent(AgentRole.SAFETY_REVIEWER)
+        if isinstance(safety, SafetyReviewerAgent):
+            safety.console = self.console
+
+        self.console.header("Orchestrator", f"Pipeline start ({run_label})")
+        self.console.step(
+            "Orchestrator",
+            "received question",
+            result="OK",
+            detail=request.question[:120],
+        )
 
         trace = self._broker.start_trace(correlation_id)
         user_envelope = AgentEnvelope.create(
@@ -89,18 +110,36 @@ class OrchestratorAgent(BaseAgent):
         )
         self._broker.record_local(user_envelope)
 
-        guard = guard_user_input(request.question)
+        guard = await guard_user_input_hybrid(request.question, console=self.console)
         self.pipeline_log.record_input_guard(guard)
+        if self._broker.trace is not None:
+            self._broker.trace.record_input_guard(guard)
 
         if not guard.allowed:
             answer = guard.block_message or apply_response_guardrail(
                 "", source_input=request.question
             )
             self.pipeline_log.final_answer = answer
+            self.console.header("Orchestrator", "Early exit - input blocked")
+            self.console.step(
+                "Orchestrator",
+                "input guard decision",
+                result="REJECT",
+                detail=guard.rule_triggered,
+            )
             self._finalize_run(correlation_id, answer, regeneration_rounds=0)
             return answer, trace, self._broker.save_trace(), self.pipeline_log
 
+        self.console.header("Orchestrator", "Input guard passed")
+        self.console.step(
+            "Orchestrator",
+            "input guard decision",
+            result=input_guard_decision(guard).upper(),
+            detail=guard.rule_triggered,
+        )
+
         safe_question = request.model_copy(update={"question": guard.text})
+        self.console.header("Orchestrator", "Dispatching retrieval")
         retrieve_response = await self._broker.send(
             AgentEnvelope.create(
                 sender=AgentRole.ORCHESTRATOR,
@@ -125,6 +164,8 @@ class OrchestratorAgent(BaseAgent):
                 stage="retrieval",
                 detail="no accessible chunks after retrieval and RBAC",
             )
+            self.console.header("Orchestrator", "Early exit - no retrieval hits")
+            self.console.step("Orchestrator", "retrieval", result="EMPTY")
             self._broker.record_local(
                 AgentEnvelope.create(
                     sender=AgentRole.ORCHESTRATOR,
@@ -148,6 +189,9 @@ class OrchestratorAgent(BaseAgent):
         final_answer = OUT_OF_SCOPE_REPLY
 
         for round_number in range(1, self._max_rounds + 1):
+            self.console.header(
+                "Orchestrator", f"Synthesis round {round_number}/{self._max_rounds}"
+            )
             synth_response = await self._broker.send(
                 AgentEnvelope.create(
                     sender=AgentRole.ORCHESTRATOR,
@@ -184,6 +228,12 @@ class OrchestratorAgent(BaseAgent):
             )
             final_answer = verdict.final_answer
 
+            self.console.step(
+                "Orchestrator",
+                f"safety verdict (round {round_number})",
+                result=verdict.decision.value.upper(),
+            )
+
             if verdict.decision != ReviewDecision.REGENERATE:
                 break
 
@@ -209,8 +259,17 @@ class OrchestratorAgent(BaseAgent):
         self._complete(correlation_id, answer, regeneration_rounds=regeneration_rounds)
         if self.pipeline_log and self._broker.trace:
             self.pipeline_log.record_from_trace(self._broker.trace)
-        if self.pipeline_log and SHOW_PIPELINE_LOG:
-            print(self.pipeline_log.format_console())
+        if self.pipeline_log:
+            self.console.header("Orchestrator", "Workflow complete")
+            self.console.step(
+                "Orchestrator",
+                "final answer",
+                result=f"{len(answer)} chars",
+            )
+            self.console.print_recap(
+                question=self.pipeline_log.question,
+                final_answer=answer,
+            )
 
     def _complete(
         self,

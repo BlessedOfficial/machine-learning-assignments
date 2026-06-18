@@ -37,6 +37,7 @@ async def evaluate(
     rel_tol: float = 0.01,
     abs_tol: float = 1e-9,
     limit: int | None = None,
+    offset: int = 0,
     use_llm_judge: bool = True,
     stop_on_quota: bool = True,
 ) -> tuple[list[EvalRow], dict[str, float]]:
@@ -47,6 +48,8 @@ async def evaluate(
 
     questions = load_all_questions()
     answers = {row["id"]: row for row in load_all_answers()}
+    if offset:
+        questions = questions[offset:]
     if limit is not None:
         questions = questions[:limit]
 

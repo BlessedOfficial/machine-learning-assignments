@@ -20,6 +20,12 @@ _PAIRWISE_CONSOLE_LOG = Path(__file__).resolve().parent / "pairwise_20_console_o
 _TRACE_ROOT = Path(__file__).resolve().parents[1] / "Observability" / "logs"
 
 
+def _pairwise_log_path(offset: int, limit: int) -> Path:
+    start = offset + 1
+    end = offset + limit
+    return Path(__file__).resolve().parent / f"pairwise_{start:02d}_{end:02d}_console_output.txt"
+
+
 def _print_pairwise_result(result, *, console_log: Path, trace_root: Path) -> None:
     print(f"Requested questions: {result.requested_count}")
     print(f"Comparable questions: {result.selected_count}")
@@ -94,6 +100,12 @@ def main() -> None:
         choices=["react", "plan_and_execute", "program_of_thought"],
     )
     parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument(
+        "--offset",
+        type=int,
+        default=0,
+        help="Skip the first N golden problems (0-based folder order)",
+    )
     parser.add_argument("--rel-tol", type=float, default=0.01)
     parser.add_argument("--abs-tol", type=float, default=1e-9)
     parser.add_argument("--no-judge-fallback", action="store_true")
@@ -161,17 +173,25 @@ def main() -> None:
 
     if args.pairwise or args.pairwise_20:
         pairwise_limit = 20 if args.pairwise_20 else args.pairwise_limit
-        with tee_console(_PAIRWISE_CONSOLE_LOG):
+        console_log = (
+            _pairwise_log_path(args.offset, pairwise_limit)
+            if args.offset or pairwise_limit != 4
+            else _PAIRWISE_CONSOLE_LOG
+        )
+        with tee_console(console_log):
             result = run_pairwise(
                 limit=pairwise_limit,
+                offset=args.offset,
                 rel_tol=args.rel_tol,
                 abs_tol=args.abs_tol,
                 use_llm_judge=not args.no_judge_fallback,
                 stop_on_quota=True,
             )
+            if args.offset:
+                print(f"Golden slice: offset={args.offset} limit={pairwise_limit}")
             _print_pairwise_result(
                 result,
-                console_log=_PAIRWISE_CONSOLE_LOG,
+                console_log=console_log,
                 trace_root=_TRACE_ROOT,
             )
             if args.write_baseline is not None:
@@ -193,6 +213,7 @@ def main() -> None:
         rel_tol=args.rel_tol,
         abs_tol=args.abs_tol,
         limit=args.limit,
+        offset=args.offset,
         use_llm_judge=not args.no_judge_fallback,
     )
 
